@@ -28,7 +28,8 @@ class ModuleController extends Controller
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
      */
     public function create()
     {
@@ -59,6 +60,15 @@ class ModuleController extends Controller
     public function json($id)
     {
         return $this->html->json($id);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id)
+    {
+        return $this->html->delete($id);
     }
 
 
