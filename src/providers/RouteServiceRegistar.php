@@ -3,7 +3,7 @@
 namespace Samark\ModuleGenerate\Providers;
 
 use Samark\ModuleGenerate\Http\Routes\ModuleRoute;
-use Arcanedev\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Samark\ModuleGenerate\Providers\RouteServiceProvider as ServiceProvider;
 
 /**
  * Class RouteServiceRegistar
@@ -25,7 +25,7 @@ class RouteServiceRegistar extends ServiceProvider
     public function routeAttributes()
     {
         return array_merge($this->config('attributes', []), [
-            'namespace' => 'Samark\ModuleGenerate\\Http\\Controllers',
+            'namespace' => 'Samark\\ModuleGenerate\\Http\\Controllers',
         ]);
     }
 

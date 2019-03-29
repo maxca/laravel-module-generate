@@ -6,15 +6,14 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 /**
  * Class     RouteServiceProvider
  *
- * @package  Arcanedev\Support\Laravel\Providers
- * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
+ * @package Support\Laravel\Providers
  *
- * @method  \Arcanedev\Support\Routing\RouteRegistrar  as(string $name)
- * @method  \Arcanedev\Support\Routing\RouteRegistrar  domain(string $domain)
- * @method  \Arcanedev\Support\Routing\RouteRegistrar  middleware(array|string $middleware)
- * @method  \Arcanedev\Support\Routing\RouteRegistrar  name(string $name)
- * @method  \Arcanedev\Support\Routing\RouteRegistrar  namespace(string $namespace)
- * @method  \Arcanedev\Support\Routing\RouteRegistrar  prefix(string $prefix)
+ * @method  Support\Routing\RouteRegistrar  as(string $name)
+ * @method  Support\Routing\RouteRegistrar  domain(string $domain)
+ * @method  Support\Routing\RouteRegistrar  middleware(array|string $middleware)
+ * @method  Support\Routing\RouteRegistrar  name(string $name)
+ * @method  Support\Routing\RouteRegistrar  namespace(string $namespace)
+ * @method  Support\Routing\RouteRegistrar  prefix(string $prefix)
  * @method  void                                       group(...$mixed)
  *
  * @method  \Illuminate\Routing\Route  get(string $uri, \Closure|array|string|null $action = null)
