@@ -94,19 +94,34 @@ class GenerateFiles implements GenerateFilesInterface
      */
     protected $configPath = array();
 
+    /**
+     * @var bool
+     */
     protected $customPath = true;
 
+    /**
+     * @var
+     */
     protected $templatePath;
 
+    /**
+     * @var array
+     */
     protected $noNeedKey = array(
         'Model' => true,
     );
 
+    /**
+     * @var array
+     */
     protected $needDuplicate = array(
         'Request' => 'requestType',
         'Lang'    => 'configLang',
     );
 
+    /**
+     * @var array
+     */
     protected $requestType = array(
         'Index'  => true,
         'Store'  => true,
@@ -116,11 +131,18 @@ class GenerateFiles implements GenerateFilesInterface
         'Export' => true,
     );
 
+    /**
+     * @var array
+     */
     protected $configLang = array(
         'en' => false,
         'th' => false,
     );
 
+    /**
+     * GenerateFiles constructor.
+     * @param string $namespace
+     */
     public function __construct($namespace = '')
     {
         $this->setReplaceConfig($namespace);
@@ -128,7 +150,9 @@ class GenerateFiles implements GenerateFilesInterface
         $this->customPath = $this->getCustomPath();
     }
 
-
+    /**
+     * @param $replace
+     */
     protected function setReplaceConfig($replace)
     {
         $this->replace      = ucfirst($replace);
@@ -137,34 +161,51 @@ class GenerateFiles implements GenerateFilesInterface
         $this->replaceUrl   = $this->urlGenerate($this->replaceSnake);
     }
 
-
+    /**
+     * @param array $config
+     */
     public function setConfig($config = array())
     {
         $this->config = $config;
     }
 
-
+    /**
+     * @param string $path
+     */
     public function setPath($path = '')
     {
         $this->path = $path;
     }
 
+    /**
+     * @param $path
+     */
     public function setTemplatePath($path)
     {
         $this->templatePath = $path;
     }
 
+    /**
+     * @param string $filename
+     */
     public function setFilename($filename = '')
     {
         $this->filename = $filename;
     }
 
 
+    /**
+     * @return string
+     */
     public function getFullFileName()
     {
         return $this->path . '/' . $this->filename;
     }
 
+    /**
+     * @param $data
+     * @return bool|int
+     */
     public function writeFile($data)
     {
         if (!is_dir($this->path)) {
@@ -174,6 +215,10 @@ class GenerateFiles implements GenerateFilesInterface
         return file_put_contents($filename, $data . "\r\n", FILE_APPEND);
     }
 
+    /**
+     * @param string $input
+     * @return string
+     */
     protected function strCamelCase($input = '')
     {
         preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
@@ -184,6 +229,9 @@ class GenerateFiles implements GenerateFilesInterface
         return implode('_', $ret);
     }
 
+    /**
+     * execute process
+     */
     public function execute()
     {
         foreach ($this->configPath as $key => $list) {
@@ -199,6 +247,11 @@ class GenerateFiles implements GenerateFilesInterface
         }
     }
 
+    /**
+     * @param $key
+     * @param $name
+     * @return string
+     */
     protected function checkFilename($key, $name)
     {
         if (array_key_exists($key, $this->noNeedKey)) {
@@ -208,6 +261,12 @@ class GenerateFiles implements GenerateFilesInterface
         return $this->replace . ucfirst($key) . '.php';
     }
 
+    /**
+     * @param $key
+     * @param $property
+     * @param $list
+     * @throws \Exception
+     */
     protected function processDuplicate($key, $property, $list)
     {
         if ($key === 'Lang') {
@@ -235,6 +294,11 @@ class GenerateFiles implements GenerateFilesInterface
 
     }
 
+    /**
+     * @param $filename
+     * @param $list
+     * @throws \Exception
+     */
     protected function processReadWriteFile($filename, $list)
     {
         $newFile = $this->readAndReplaceFile($list['resource']);
@@ -266,12 +330,20 @@ class GenerateFiles implements GenerateFilesInterface
     }
 
 
+    /**
+     * @param string $text
+     */
     protected function printLine($text = '')
     {
         echo "\r\n";
         echo "Write file \e[44m" . $text . " success \e[49m";
     }
 
+    /**
+     * @param $config
+     * @return mixed|string
+     * @throws \Exception
+     */
     protected function readAndReplaceFile($config)
     {
         if (!empty($this->templatePath)) {
@@ -288,24 +360,36 @@ class GenerateFiles implements GenerateFilesInterface
 
     }
 
+    /**
+     * @param string $input
+     * @return mixed
+     */
     protected function urlGenerate($input = '')
     {
         return str_replace("_", '-', $input);
     }
 
 
+    /**
+     * @param string $file
+     * @return mixed|string
+     */
     protected function replaceFile($file = '')
     {
         $file = str_replace(array("{replace}"), $this->replace, $file);
         $file = str_replace(array("{replace_sm}"), $this->replaceSmall, $file);
         $file = str_replace(array("{replace_snc}"), $this->replaceSnake, $file);
         $file = str_replace(array("{replace_url}"), $this->replaceUrl, $file);
-        $file = str_replace(array("{action}"), strtolower($this->action), $file);
+        $file = str_replace(array("{action}"), $this->action, $file);
+        $file = str_replace(array("{action_sm}"), strtolower($this->action), $file);
         $file = str_replace(array("{controller_namespace}"), $this->controllerNamespace, $file);
         $file = str_replace(array("{repository}"), $this->repositoryNamespace, $file);
         return $file;
     }
 
+    /**
+     * @return void
+     */
     public function makeMigration()
     {
         $tableName = $this->replaceSmall;
@@ -318,6 +402,9 @@ class GenerateFiles implements GenerateFilesInterface
         $this->printline('ok');
     }
 
+    /**
+     * @param string $path
+     */
     public function appendRoute($path = 'api')
     {
         if (file_exists(base_path("routes/{$path}.php"))) {

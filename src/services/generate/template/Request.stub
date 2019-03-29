@@ -14,7 +14,7 @@ class {action}{replace}Request extends FormRequest
     public function authorize()
     {
         return $this->hasRoles(['admin']) ||
-            $this->hasPermissions(['{replace_sm}.{action}']) ||
+            $this->hasPermissions(['{replace_sm}.{action_sm}']) ||
             $this->hasPermissions(['{replace_sm}.*']);
     }
 

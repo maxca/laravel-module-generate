@@ -15,8 +15,8 @@ trait GenerateFileConfig
      */
     public function getConfig()
     {
-        if (!empty(config('generate.template'))) {
-            return config('generate.template');
+        if (!empty(config(CONFIG_NAME . '.template'))) {
+            return config(CONFIG_NAME . '.template');
         }
         return array(
 
@@ -85,8 +85,8 @@ trait GenerateFileConfig
      */
     public function getCustomPath()
     {
-        if (!empty(config('generate.custom_path'))) {
-            return config('generate.custom_path');
+        if (!empty(config(CONFIG_NAME . '.custom_path'))) {
+            return config(CONFIG_NAME . '.custom_path');
         }
         return true;
     }

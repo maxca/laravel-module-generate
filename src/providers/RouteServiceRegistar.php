@@ -74,6 +74,6 @@ class RouteServiceRegistar extends ServiceProvider
         /** @var  \Illuminate\Config\Repository  $config */
         $config = $this->app->make('config');
 
-        return $config->get("module-generate.route.$key", $default);
+        return $config->get(CONFIG_NAME.".route.$key", $default);
     }
 }
