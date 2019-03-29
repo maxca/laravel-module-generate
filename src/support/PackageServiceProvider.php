@@ -25,7 +25,7 @@ abstract class PackageServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $vendor = 'arcanedev';
+    protected $vendor = 'samarkchaisanguan';
 
     /**
      * Package name.
