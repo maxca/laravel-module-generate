@@ -50,8 +50,9 @@ class ModuleGenerateServiceProvider extends PackageServiceProvider
         parent::boot();
 
         $this->publishConfig();
+        $this->publishMigrations();
         $this->publishViews();
-        $this->publishTranslations();
+
     }
 
     /* -----------------------------------------------------------------
