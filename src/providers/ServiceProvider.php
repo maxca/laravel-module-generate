@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Providers;
+namespace Samark\ModuleGenerate\Providers;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\AliasLoader;
@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
 /**
  * Class ServiceProvider
- * @package Samark\Providers
+ * @package Samark\ModuleGenerate\Providers
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 abstract class ServiceProvider extends IlluminateServiceProvider

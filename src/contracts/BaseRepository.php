@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Contracts;
+namespace Samark\ModuleGenerate\Contracts;
 
 use App\Exceptions\GeneralException;
 use Illuminate\Database\Eloquent\Model;

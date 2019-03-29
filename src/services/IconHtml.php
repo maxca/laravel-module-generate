@@ -1,12 +1,12 @@
 <?php
 
-namespace Samark\Services;
+namespace Samark\ModuleGenerate\Services;
 
-use Samark\ConfigModuleIcons;
+use Samark\ModuleGenerate\ConfigModuleIcons;
 
 /**
  * Class IconHtml
- * @package Samark\Services
+ * @package Samark\ModuleGenerate\Services
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class IconHtml extends HtmlService
@@ -27,7 +27,7 @@ class IconHtml extends HtmlService
      * @var array
      */
     protected $view = [
-        'create' => 'modules.icon.create',
-        'list'   => 'modules.icon.list'
+        'create' => 'module-generate::modules.icon.create',
+        'list'   => 'module-generate::modules.icon.list'
     ];
 }

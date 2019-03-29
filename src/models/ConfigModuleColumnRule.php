@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark;
+namespace Samark\ModuleGenerate;
 
 use Illuminate\Database\Eloquent\Model;
 

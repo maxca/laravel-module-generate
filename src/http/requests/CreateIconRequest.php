@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Http\Requests;
+namespace Samark\ModuleGenerate\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

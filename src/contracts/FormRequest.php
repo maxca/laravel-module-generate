@@ -1,15 +1,15 @@
 <?php
 
-namespace Samark\Contracts;
+namespace Samark\ModuleGenerate\Contracts;
 
-use Samark\Exceptions\ValidationException;
+use Samark\ModuleGenerate\Exceptions\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\UnauthorizedException;
 
 
 /**
  * Class FormRequest
- * @package Samark\Contracts
+ * @package Samark\ModuleGenerate\Contracts
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 abstract class FormRequest extends Request

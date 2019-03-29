@@ -1,9 +1,9 @@
 <?php
 
-namespace Samark\Http\Controllers;
+namespace Samark\ModuleGenerate\Http\Controllers;
 
-use Samark\Http\Requests\CreateRuleRequest;
-use Samark\Services\InputTypeHtml;
+use Samark\ModuleGenerate\Http\Requests\CreateRuleRequest;
+use Samark\ModuleGenerate\Services\InputTypeHtml;
 use App\Http\Controllers\Controller;
 
 /**

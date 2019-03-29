@@ -1,12 +1,12 @@
 <?php
 
-namespace Samark\Services;
+namespace Samark\ModuleGenerate\Services;
 
-use Samark\ConfigModuleInputType;
+use Samark\ModuleGenerate\ConfigModuleInputType;
 
 /**
  * Class InputTypeHtml
- * @package Samark\Services
+ * @package Samark\ModuleGenerate\Services
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class InputTypeHtml extends HtmlService
@@ -27,7 +27,7 @@ class InputTypeHtml extends HtmlService
      * @var array
      */
     protected $view = [
-        'create' => 'modules.type.create',
-        'list'   => 'modules.type.list'
+        'create' => 'module-generate::modules.type.create',
+        'list'   => 'module-generate::modules.type.list'
     ];
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Services\Components;
+namespace Samark\ModuleGenerate\Services\Components;
 
 /**
  * Interface ComponentInterface

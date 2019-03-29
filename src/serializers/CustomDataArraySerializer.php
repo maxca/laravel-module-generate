@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Serializers;
+namespace Samark\ModuleGenerate\Serializers;
 
 use League\Fractal\Serializer\ArraySerializer;
 

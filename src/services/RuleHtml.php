@@ -1,13 +1,13 @@
 <?php
 
-namespace Samark\Services;
+namespace Samark\ModuleGenerate\Services;
 
-use Samark\ConfigModuleRules;
+use Samark\ModuleGenerate\ConfigModuleRules;
 
 
 /**
  * Class RuleHtml
- * @package Samark\Services
+ * @package Samark\ModuleGenerate\Services
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class RuleHtml extends HtmlService
@@ -21,8 +21,8 @@ class RuleHtml extends HtmlService
      * @var array
      */
     protected $view = [
-        'create' => 'modules.rule.create',
-        'list'   => 'modules.rule.list'
+        'create' => 'module-generate::modules.rule.create',
+        'list'   => 'module-generate::modules.rule.list'
 
     ];
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Samark\Http\Routes;
+namespace Samark\ModuleGenerate\Http\Routes;
 
-use Samark\Support\RouteRegistrar;
+use Samark\ModuleGenerate\Support\RouteRegistrar;
 
 class ModuleRoute extends RouteRegistrar
 {

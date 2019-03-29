@@ -1,10 +1,10 @@
 <?php
 
-namespace Samark\Services\Components;
+namespace Samark\ModuleGenerate\Services\Components;
 
 /**
  * Class Component
- * @package Samark\Services\Components
+ * @package Samark\ModuleGenerate\Services\Components
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class Component implements ComponentInterface

@@ -1,4 +1,4 @@
-@extends('modules.master')
+@extends('module-generate::modules.master')
 
 @section('content')
     <form action="{{route('save.rule')}}" method="post">

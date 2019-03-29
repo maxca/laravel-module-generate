@@ -1,8 +1,8 @@
 <?php
 
-namespace Samark\Services\Components;
+namespace Samark\ModuleGenerate\Services\Components;
 
-use Samark\ConfigModuleIcons;
+use Samark\ModuleGenerate\ConfigModuleIcons;
 
 /**
  * Class ComponentSelectIcon
@@ -19,7 +19,7 @@ class ComponentSelectIcon extends Component
     /**
      * @var string
      */
-    protected $view = 'modules.component.select';
+    protected $view = 'module-generate::modules.component.select';
 
     /**
      * @var array

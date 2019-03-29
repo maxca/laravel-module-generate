@@ -1,10 +1,10 @@
 <?php
 
-namespace Samark\Services;
+namespace Samark\ModuleGenerate\Services;
 
-use Samark\Services\Components\ComponentSelectRule;
-use Samark\Services\Components\ComponentSelectInputType;
-use Samark\Services\Components\ComponentSelectIcon;
+use Samark\ModuleGenerate\Services\Components\ComponentSelectRule;
+use Samark\ModuleGenerate\Services\Components\ComponentSelectInputType;
+use Samark\ModuleGenerate\Services\Components\ComponentSelectIcon;
 
 /**
  * Class HtmlService
@@ -15,19 +15,19 @@ class  HtmlService implements HtmlServiceInterface
 {
 
     /**
-     * @var \Samark\Services\Components\ComponentSelectRule
+     * @var \Samark\ModuleGenerate\Services\Components\ComponentSelectRule
      */
     protected $selectRule;
 
 
     /**
-     * @var \Samark\Services\Components\ComponentSelectInputType
+     * @var \Samark\ModuleGenerate\Services\Components\ComponentSelectInputType
      */
     protected $selectInputType;
 
 
     /**
-     * @var \Samark\Services\Components\ComponentSelectIcon
+     * @var \Samark\ModuleGenerate\Services\Components\ComponentSelectIcon
      */
     protected $selectIcon;
 
@@ -52,9 +52,9 @@ class  HtmlService implements HtmlServiceInterface
 
     /**
      * HtmlService constructor.
-     * @param \Samark\Services\Components\ComponentSelectRule $selectRule
-     * @param \Samark\Services\Components\ComponentSelectInputType $selectInputType
-     * @param \Samark\Services\Components\ComponentSelectIcon $selectIcon
+     * @param \Samark\ModuleGenerate\Services\Components\ComponentSelectRule $selectRule
+     * @param \Samark\ModuleGenerate\Services\Components\ComponentSelectInputType $selectInputType
+     * @param \Samark\ModuleGenerate\Services\Components\ComponentSelectIcon $selectIcon
      */
     public function __construct(
         ComponentSelectRule $selectRule,

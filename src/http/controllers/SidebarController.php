@@ -1,14 +1,14 @@
 <?php
 
-namespace Samark\Http\Controllers;
+namespace Samark\ModuleGenerate\Http\Controllers;
 
-use Samark\Sidebar;
+use Samark\ModuleGenerate\Sidebar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 /**
  * Class SidebarController
- * @package Samark\Http\Controllers
+ * @package Samark\ModuleGenerate\Http\Controllers
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class SidebarController extends Controller

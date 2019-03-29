@@ -1,12 +1,12 @@
 <?php
 
-namespace Samark\Contracts;
+namespace Samark\ModuleGenerate\Contracts;
 
 use Spatie\Translatable\Events\TranslationHasBeenSet;
 
 /**
  * Trait HasTranslations
- * @package Samark\Contracts
+ * @package Samark\ModuleGenerate\Contracts
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 trait HasTranslations
@@ -37,7 +37,7 @@ trait HasTranslations
      * @param string $key
      * @param string $locale
      * @param $value
-     * @return \Samark\Contracts\HasTranslations
+     * @return \Samark\ModuleGenerate\Contracts\HasTranslations
      */
     public function setTranslation(string $key, string $locale, $value): self
     {
@@ -65,7 +65,7 @@ trait HasTranslations
     /**
      * @param $key
      * @param $value
-     * @return $this|\Samark\Contracts\HasTranslations
+     * @return $this|\Samark\ModuleGenerate\Contracts\HasTranslations
      */
     public function setAttribute($key, $value)
     {

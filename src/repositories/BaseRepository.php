@@ -1,8 +1,8 @@
 <?php
 
-namespace Samark\Repositories;
+namespace Samark\ModuleGenerate\Repositories;
 
-use App\Exceptions\GeneralException;
+use Samark\ModuleGenerate\Exceptions\GeneralException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Samark\Services\Generate;
+namespace Samark\ModuleGenerate\Services\Generate;
 
 /**
  * Trait GenerateFileConfig
- * @package Samark\Services\Generate
+ * @package Samark\ModuleGenerate\Services\Generate
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 trait GenerateFileConfig

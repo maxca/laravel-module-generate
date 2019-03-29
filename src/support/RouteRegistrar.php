@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Support;
+namespace Samark\ModuleGenerate\Support;
 
 abstract class RouteRegistrar
 {

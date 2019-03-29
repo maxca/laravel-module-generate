@@ -1,16 +1,16 @@
 <?php
 
-namespace Samark\Support;
+namespace Samark\ModuleGenerate\Support;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Str;
 use ReflectionClass;
 use Exception;
-use Samark\Providers\ServiceProvider;
+use Samark\ModuleGenerate\Providers\ServiceProvider;
 
 /**
  * Class PackageServiceProvider
- * @package Samark\Support
+ * @package Samark\ModuleGenerate\Support
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 abstract class PackageServiceProvider extends ServiceProvider

@@ -1,26 +1,26 @@
 <?php
 
-namespace Samark\Http\Controllers;
+namespace Samark\ModuleGenerate\Http\Controllers;
 
-use Samark\Services\ModuleHtml;
-use Samark\Http\Requests\CreateModuleRequest;
+use Samark\ModuleGenerate\Services\ModuleHtml;
+use Samark\ModuleGenerate\Http\Requests\CreateModuleRequest;
 use App\Http\Controllers\Controller;
 
 /**
  * Class ModuleController
- * @package Samark\Http\Controllers
+ * @package Samark\ModuleGenerate\Http\Controllers
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class ModuleController extends Controller
 {
     /**
-     * @var \Samark\Services\ModuleHtml
+     * @var \Samark\ModuleGenerate\Services\ModuleHtml
      */
     protected $html;
 
     /**
      * ModuleController constructor.
-     * @param \Samark\Services\ModuleHtml $html
+     * @param \Samark\ModuleGenerate\Services\ModuleHtml $html
      */
     public function __construct(ModuleHtml $html)
     {
@@ -36,7 +36,7 @@ class ModuleController extends Controller
     }
 
     /**
-     * @param \Samark\Http\Requests\CreateModuleRequest $request
+     * @param \Samark\ModuleGenerate\Http\Requests\CreateModuleRequest $request
      * @return mixed
      */
     public function store(CreateModuleRequest $request)

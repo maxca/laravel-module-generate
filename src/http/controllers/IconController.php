@@ -1,9 +1,9 @@
 <?php
 
-namespace Samark\Http\Controllers;
+namespace Samark\ModuleGenerate\Http\Controllers;
 
-use Samark\Http\Requests\CreateIconRequest;
-use Samark\Services\IconHtml;
+use Samark\ModuleGenerate\Http\Requests\CreateIconRequest;
+use Samark\ModuleGenerate\Services\IconHtml;
 use App\Http\Controllers\Controller;
 
 /**

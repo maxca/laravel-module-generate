@@ -1,10 +1,10 @@
 <?php
 
-namespace Samark\Services\Generate;
+namespace Samark\ModuleGenerate\Services\Generate;
 
 /**
  * Interface GenerateFilesInterface
- * @package Samark\Services\Generate
+ * @package Samark\ModuleGenerate\Services\Generate
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 interface GenerateFilesInterface

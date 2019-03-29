@@ -1,8 +1,8 @@
 <?php
 
-namespace Samark\Services\Components;
+namespace Samark\ModuleGenerate\Services\Components;
 
-use Samark\ConfigModuleInputType;
+use Samark\ModuleGenerate\ConfigModuleInputType;
 
 /**
  * Class ComponentSelectRule
@@ -16,12 +16,19 @@ class  ComponentSelectInputType extends Component
      */
     protected $model = ConfigModuleInputType::class;
 
-    protected $view = 'modules.component.select';
+    /**
+     * @var string
+     */
+    protected $view = 'module-generate::modules.component.select';
 
-    protected $data = [
-//        '' => 'select type'
-    ];
+    /**
+     * @var array
+     */
+    protected $data = [];
 
+    /**
+     * @var array
+     */
     protected $options = [
         'name'   => 'type[]',
         'value'  => 'Please select type',

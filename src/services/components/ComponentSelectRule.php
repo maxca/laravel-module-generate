@@ -1,12 +1,12 @@
 <?php
 
-namespace Samark\Services\Components;
+namespace Samark\ModuleGenerate\Services\Components;
 
-use Samark\ConfigModuleRules;
+use Samark\ModuleGenerate\ConfigModuleRules;
 
 /**
  * Class ComponentSelectRule
- * @package Samark\Services\Components
+ * @package Samark\ModuleGenerate\Services\Components
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class  ComponentSelectRule extends Component
@@ -19,7 +19,7 @@ class  ComponentSelectRule extends Component
     /**
      * @var string
      */
-    protected $view = 'modules.component.select';
+    protected $view = 'module-generate::modules.component.select';
 
     /**
      * @var array

@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Contracts;
+namespace Samark\ModuleGenerate\Contracts;
 
 /**
  * Interface RepositoryContract.

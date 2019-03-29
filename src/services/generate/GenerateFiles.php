@@ -1,12 +1,12 @@
 <?php
 
-namespace Samark\Services\Generate;
+namespace Samark\ModuleGenerate\Services\Generate;
 
 use Artisan;
 
 /**
  * Class GenerateFiles
- * @package Samark\Services\Generate
+ * @package Samark\ModuleGenerate\Services\Generate
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class GenerateFiles implements GenerateFilesInterface

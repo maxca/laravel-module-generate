@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Exceptions;
+namespace Samark\ModuleGenerate\Exceptions;
 
 use Exception;
 use Throwable;

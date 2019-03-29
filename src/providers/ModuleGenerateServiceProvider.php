@@ -1,8 +1,8 @@
 <?php
 
-namespace Samark\Providers;
+namespace Samark\ModuleGenerate\Providers;
 
-use Samark\Support\PackageServiceProvider;
+use Samark\ModuleGenerate\Support\PackageServiceProvider;
 use Collective\Html\HtmlServiceProvider;
 use Collective\Html\FormFacade;
 use Collective\Html\HtmlFacade;

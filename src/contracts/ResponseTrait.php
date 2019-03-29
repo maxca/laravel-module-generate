@@ -1,8 +1,8 @@
 <?php
 
-namespace Samark\Contracts;
+namespace Samark\ModuleGenerate\Contracts;
 
-use Samark\Serializers\CustomDataArraySerializer;
+use Samark\ModuleGenerate\Serializers\CustomDataArraySerializer;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use League\Fractal\Manager;

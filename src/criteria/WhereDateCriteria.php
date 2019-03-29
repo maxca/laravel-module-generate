@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Criterias;
+namespace Samark\ModuleGenerate\Criteria;
 
 use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;

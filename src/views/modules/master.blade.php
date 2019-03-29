@@ -25,7 +25,7 @@
     <body>
     <div id="app">
         @include('includes.partials.logged-in-as')
-        @include('modules.layout.nav')
+        @include('module-generate::modules.layout.nav')
 
         <div class="container">
             @include('includes.partials.messages')

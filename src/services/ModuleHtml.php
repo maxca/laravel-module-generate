@@ -1,17 +1,17 @@
 <?php
 
-namespace Samark\Services;
+namespace Samark\ModuleGenerate\Services;
 
-use Samark\ConfigModule;
-use Samark\ConfigModuleAction;
-use Samark\ConfigModuleColumnRule;
-use Samark\ConfigModuleSearch;
-use Samark\ConfigModuleColumns;
-use Samark\Services\Generate\GenerateFiles;
+use Samark\ModuleGenerate\ConfigModule;
+use Samark\ModuleGenerate\ConfigModuleAction;
+use Samark\ModuleGenerate\ConfigModuleColumnRule;
+use Samark\ModuleGenerate\ConfigModuleSearch;
+use Samark\ModuleGenerate\ConfigModuleColumns;
+use Samark\ModuleGenerate\Services\Generate\GenerateFiles;
 
 /**
  * Class ModuleHtml
- * @package Samark\Services
+ * @package Samark\ModuleGenerate\Services
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class ModuleHtml extends HtmlService
@@ -45,8 +45,8 @@ class ModuleHtml extends HtmlService
      * @var array
      */
     protected $view = [
-        'create' => 'modules.create',
-        'list'   => 'modules.module.list'
+        'create' => 'module-generate::modules.create',
+        'list'   => 'module-generate::modules.module.list'
     ];
 
     /**

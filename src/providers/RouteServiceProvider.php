@@ -1,5 +1,5 @@
 <?php
-namespace Samark\Providers;
+namespace Samark\ModuleGenerate\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 

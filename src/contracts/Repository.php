@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Contracts;
+namespace Samark\ModuleGenerate\Contracts;
 
 use Prettus\Repository\Contracts\CacheableInterface;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -9,7 +9,7 @@ use Prettus\Repository\Events\RepositoryEntityDeleted;
 use Prettus\Repository\Events\RepositoryEntityUpdated;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
-use Samark\Criterias\RequestCriteria;
+use Samark\ModuleGenerate\Criterias\RequestCriteria;
 
 /**
  * Class Repository

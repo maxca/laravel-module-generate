@@ -1,6 +1,6 @@
 <?php
 
-namespace Samark\Contracts;
+namespace Samark\ModuleGenerate\Contracts;
 
 use League\Fractal\Scope;
 use League\Fractal\Resource\Primitive;
