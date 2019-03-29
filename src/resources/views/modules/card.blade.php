@@ -116,7 +116,7 @@
     </div>
 </div>
 
-@push('after-scripts')
+@push('scripts')
     <script>
         reloadIndex();
         let column = ' <div class="form-group add-column">\n' +

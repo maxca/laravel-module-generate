@@ -30,10 +30,11 @@ class ModuleRoute extends RouteRegistrar
             'prefix' => 'rule',
             'as'     => 'rule.'
         ], function () {
-            $this->get('/', 'ModuleController@viewRuleList')->name('list');
-            $this->get('/delete/{id}', 'ModuleController@deleteRule')->name('delete');
-            $this->get('/create', 'ModuleController@viewCreateRule');
-            $this->get('/json', 'ModuleController@getRuleJson');
+            $this->get('/', 'RuleController@list')->name('list');
+            $this->get('/create', 'RuleController@create')->name('create');
+            $this->get('/delete/{id}', 'RuleController@delete')->name('delete');
+            $this->post('/store', 'RuleController@store');
+
         });
 
 

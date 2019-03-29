@@ -1,1 +1,0 @@
-{{ Form::select($name, $data, $value, $option) }}
