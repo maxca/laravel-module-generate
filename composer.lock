@@ -2182,13 +2182,6 @@
                 "phpunit/phpunit": "^7.4|^8.0"
             },
             "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\Translatable\\TranslatableServiceProvider"
-                    ]
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Spatie\\Translatable\\": "src"
