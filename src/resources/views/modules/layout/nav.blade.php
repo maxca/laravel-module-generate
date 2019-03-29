@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-    <a href="http://localhost:8812" class="navbar-brand">Module Generate</a>
+    <a href="{{url('/module')}}" class="navbar-brand">Module Generate</a>
     <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation"
             class="navbar-toggler navbar-toggler-right"><span class="navbar-toggler-icon"></span></button>

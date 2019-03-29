@@ -22,28 +22,24 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Vendor name.
-     *
      * @var string
      */
     protected $vendor = 'samarkchaisanguan';
 
     /**
      * Package name.
-     *
      * @var string
      */
     protected $package = '';
 
     /**
      * Package base path.
-     *
      * @var string
      */
     protected $basePath;
 
     /**
      * Merge multiple config files into one instance (package name as root key)
-     *
      * @var bool
      */
     protected $multiConfigs = false;
@@ -55,8 +51,7 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Create a new service provider instance.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param  \Illuminate\Contracts\Foundation\Application $app
      */
     public function __construct(Application $app)
     {
@@ -67,7 +62,6 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Resolve the base path of the package.
-     *
      * @return string
      */
     protected function resolveBasePath()
@@ -84,7 +78,6 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Get the base path of the package.
-     *
      * @return string
      */
     public function getBasePath()
@@ -94,17 +87,15 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Get config folder.
-     *
      * @return string
      */
     protected function getConfigFolder()
     {
-        return realpath($this->getBasePath().DS.'config');
+        return realpath($this->getBasePath() . DS . 'config');
     }
 
     /**
      * Get config key.
-     *
      * @return string
      */
     protected function getConfigKey()
@@ -114,17 +105,15 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Get config file path.
-     *
      * @return string
      */
     protected function getConfigFile()
     {
-        return $this->getConfigFolder().DS."{$this->package}.php";
+        return $this->getConfigFolder() . DS . "{$this->package}.php";
     }
 
     /**
      * Get config file destination path.
-     *
      * @return string
      */
     protected function getConfigFileDestination()
@@ -134,72 +123,74 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Get the base database path.
-     *
      * @return string
      */
     protected function getDatabasePath()
     {
-        return $this->getBasePath().DS.'database';
+        return $this->getBasePath() . DS . 'database';
     }
 
     /**
      * Get the migrations path.
-     *
      * @return string
      */
     protected function getMigrationsPath()
     {
-        return $this->getBasePath().DS.'database'.DS.'migrations';
+        return $this->getBasePath() . DS . 'database' . DS . 'migrations';
     }
 
     /**
      * Get the base resources path.
-     *
      * @return string
      */
     protected function getResourcesPath()
     {
-        return $this->getBasePath().DS.'resources';
+        return $this->getBasePath() . DS . 'resources';
     }
 
     /**
      * Get the base views path.
-     *
      * @return string
      */
     protected function getViewsPath()
     {
-        return $this->getResourcesPath().DS.'views';
+        return $this->getResourcesPath() . DS . 'views';
+    }
+
+    /**
+     * Get the base template path.
+     * @return string
+     */
+    protected function getTemplatePath()
+    {
+        return $this->getBasePath() . DS . 'services' . DS . 'generate' . DS . 'template';
     }
 
     /**
      * Get the destination views path.
-     *
      * @return string
      */
     protected function getViewsDestinationPath()
     {
-        return resource_path('views'.DS.'vendor'.DS.$this->package);
+        return resource_path('views' . DS . 'vendor' . DS . $this->package);
     }
 
     /**
      * Get the translations path.
-     *
      * @return string
      */
     protected function getTranslationsPath()
     {
-        return $this->getResourcesPath().DS.'lang';
+        return $this->getResourcesPath() . DS . 'lang';
     }
 
     /**
      * Get the destination views path.
-     *
      * @return string
      */
     protected function getTranslationsDestinationPath()
     {
-        return resource_path('lang'.DS.'vendor'.DS.$this->package);
+        return resource_path('lang' . DS . 'vendor' . DS . $this->package);
     }
 
     /* -----------------------------------------------------------------
@@ -224,8 +215,7 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Register configs.
-     *
-     * @param  string  $separator
+     * @param  string $separator
      */
     protected function registerConfig($separator = '.')
     {
@@ -236,22 +226,20 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Register all package configs.
-     *
-     * @param  string  $separator
+     * @param  string $separator
      */
     private function registerMultipleConfigs($separator = '.')
     {
-        foreach (glob($this->getConfigFolder().'/*.php') as $configPath) {
+        foreach (glob($this->getConfigFolder() . '/*.php') as $configPath) {
             $this->mergeConfigFrom(
-                $configPath, $this->getConfigKey().$separator.basename($configPath, '.php')
+                $configPath, $this->getConfigKey() . $separator . basename($configPath, '.php')
             );
         }
     }
 
     /**
      * Register commands service provider.
-     *
-     * @param  \Illuminate\Support\ServiceProvider|string  $provider
+     * @param  \Illuminate\Support\ServiceProvider|string $provider
      */
     protected function registerCommands($provider)
     {
@@ -270,6 +258,16 @@ abstract class PackageServiceProvider extends ServiceProvider
     }
 
     /**
+     * Publish the template file.
+     */
+    protected function publishTemplate()
+    {
+        $this->publishes([
+            $this->getTemplatePath() => public_path('/template'),
+        ], 'template');
+    }
+
+    /**
      * Publish the migration files.
      */
     protected function publishMigrations()
@@ -281,8 +279,7 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Publish and load the views if $load argument is true.
-     *
-     * @param  bool  $load
+     * @param  bool $load
      */
     protected function publishViews($load = true)
     {
@@ -295,8 +292,7 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Publish and load the translations if $load argument is true.
-     *
-     * @param  bool  $load
+     * @param  bool $load
      */
     protected function publishTranslations($load = true)
     {
@@ -313,14 +309,13 @@ abstract class PackageServiceProvider extends ServiceProvider
     protected function publishFactories()
     {
         $this->publishes([
-            $this->getDatabasePath().DS.'factories' => database_path('factories'),
+            $this->getDatabasePath() . DS . 'factories' => database_path('factories'),
         ], 'factories');
     }
 
     /**
      * Publish all the package files.
-     *
-     * @param  bool  $load
+     * @param  bool $load
      */
     protected function publishAll($load = true)
     {
@@ -362,7 +357,6 @@ abstract class PackageServiceProvider extends ServiceProvider
 
     /**
      * Check package name.
-     *
      * @throws \Exception
      */
     private function checkPackageName()

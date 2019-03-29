@@ -52,6 +52,7 @@ class ModuleGenerateServiceProvider extends PackageServiceProvider
         $this->publishConfig();
         $this->publishMigrations();
         $this->publishViews();
+        $this->publishTemplate();
 
     }
 
