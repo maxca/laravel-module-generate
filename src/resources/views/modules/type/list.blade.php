@@ -23,7 +23,7 @@
                     <td>{{$item->type}}</td>
                     <td>{{$item->status}}</td>
                     <td>
-                        <a href="{{route('type.delete', ['id' => $item->id])}}" class="btn btn-sm btn-danger"> delete</a>
+                        <a href="{{route('module-generate::type.delete', ['id' => $item->id])}}" class="btn btn-sm btn-danger"> delete</a>
                     </td>
                 </tr>
             @endforeach

@@ -37,8 +37,8 @@ class ModuleHtml extends HtmlService
      * @var array
      */
     protected $routes = [
-        'create' => 'module.create',
-        'list'   => 'module.list',
+        'create' => 'module-generate::module.create',
+        'list'   => 'module-generate::module.list',
     ];
 
     /**

@@ -19,12 +19,10 @@ class  HtmlService implements HtmlServiceInterface
      */
     protected $selectRule;
 
-
     /**
      * @var \Samark\ModuleGenerate\Services\Components\ComponentSelectInputType
      */
     protected $selectInputType;
-
 
     /**
      * @var \Samark\ModuleGenerate\Services\Components\ComponentSelectIcon
@@ -48,7 +46,6 @@ class  HtmlService implements HtmlServiceInterface
         'list'   => '',
         'create' => '',
     ];
-
 
     /**
      * HtmlService constructor.

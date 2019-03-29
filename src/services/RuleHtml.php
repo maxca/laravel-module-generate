@@ -25,4 +25,12 @@ class RuleHtml extends HtmlService
         'list'   => 'module-generate::modules.rule.list'
 
     ];
+
+    /**
+     * @var array
+     */
+    protected $routes = [
+        'create' => 'module-generate::rule.create',
+        'list'   => 'module-generate::rule.list',
+    ];
 }

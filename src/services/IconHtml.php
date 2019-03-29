@@ -20,8 +20,8 @@ class IconHtml extends HtmlService
      * @var array
      */
     protected $routes = [
-        'create' => 'icon.create',
-        'list'   => 'icon.list',
+        'create' => 'module-generate::icon.create',
+        'list'   => 'module-generate::icon.list',
     ];
     /**
      * @var array

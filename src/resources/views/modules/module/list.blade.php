@@ -19,8 +19,8 @@
                     <td>{{$item->name}}</td>
                     <td>{{$item->status}}</td>
                     <td>
-                        <a href="{{route('rule.delete',['id' => $item->id])}}" class="btn btn-sm btn-danger"> delete</a>
-                        <a href="{{route('module.json', ['id' => $item->id])}}" target="_blank" class="btn btn-sm btn-primary"> json</a>
+                        <a href="{{route('module-generate::rule.delete',['id' => $item->id])}}" class="btn btn-sm btn-danger"> delete</a>
+                        <a href="{{route('module-generate::module.json', ['id' => $item->id])}}" target="_blank" class="btn btn-sm btn-primary"> json</a>
                     </td>
                 </tr>
             @endforeach

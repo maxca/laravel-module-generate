@@ -25,7 +25,7 @@
                     <td>{{$item->type}}</td>
                     <td>{{$item->status}}</td>
                     <td>
-                        <a href="{{route('rule.delete',['id' => $item->id])}}" class="btn btn-sm btn-danger"> delete</a>
+                        <a href="{{route('module-generate::rule.delete', ['id' => $item->id])}}" class="btn btn-sm btn-danger"> delete</a>
                     </td>
                 </tr>
             @endforeach

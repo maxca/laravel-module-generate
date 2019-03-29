@@ -1,7 +1,7 @@
 @extends('module-generate::modules.master')
 
 @section('content')
-    <form action="{{route('save.rule')}}" method="post">
+    <form action="{{url('rule/store')}}" method="post">
         {{csrf_field()}}
         <div class="row  justify-content-center">
             <div class="col-md-8 col-md-offset-2">

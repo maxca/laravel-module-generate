@@ -19,7 +19,7 @@
                     <td> <i class="{{$item->name}}"></i>{{$item->name}}</td>
                     <td>{{$item->status}}</td>
                     <td>
-                        <a href="{{route('icon.delete',['id' => $item->id])}}" class="btn btn-sm btn-danger"> delete</a>
+                        <a href="{{route('module-generate::icon.delete',['id' => $item->id])}}" class="btn btn-sm btn-danger"> delete</a>
                     </td>
                 </tr>
             @endforeach

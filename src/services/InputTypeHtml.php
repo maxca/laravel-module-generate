@@ -20,8 +20,8 @@ class InputTypeHtml extends HtmlService
      * @var array
      */
     protected $routes = [
-        'create' => 'type.create',
-        'list'   => 'type.list',
+        'create' => 'module-generate::type.create',
+        'list'   => 'module-generate::type.list',
     ];
     /**
      * @var array

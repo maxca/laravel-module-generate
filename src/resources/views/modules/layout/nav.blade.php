@@ -6,10 +6,10 @@
     <div id="navbarSupportedContent" class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
 
-            <li class="nav-item"><a href="{{route('type.list')}}" class="nav-link ">type</a></li>
-            <li class="nav-item"><a href="{{route('rule.list')}}" class="nav-link ">rule</a></li>
-            <li class="nav-item"><a href="{{route('module.list')}}" class="nav-link ">module</a></li>
-            <li class="nav-item"><a href="{{route('icon.list')}}" class="nav-link ">icon</a></li>
+            <li class="nav-item"><a href="{{route('module-generate::type.list')}}" class="nav-link ">type</a></li>
+            <li class="nav-item"><a href="{{route('module-generate::rule.list')}}" class="nav-link ">rule</a></li>
+            <li class="nav-item"><a href="{{route('module-generate::module.list')}}" class="nav-link ">module</a></li>
+            <li class="nav-item"><a href="{{route('module-generate::icon.list')}}" class="nav-link ">icon</a></li>
             {{--<li class="nav-item dropdown">--}}
                 {{--<a href="#" id="navbarDropdownMenuUser" data-toggle="dropdown"--}}
                                              {{--aria-haspopup="true" aria-expanded="false"--}}
