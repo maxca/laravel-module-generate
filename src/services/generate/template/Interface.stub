@@ -7,7 +7,9 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 /**
  * Interface {replace}Repository
  * @package namespace App\Interfaces;
+ * @author samark chaisanguan <samarkchsngn@gmail.com>
  */
+
 interface {replace}Repository extends RepositoryInterface
 {
     

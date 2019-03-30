@@ -5,14 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Samark\ModuleGenerate\Contracts\HasTranslations;
 
+/**
+ * Class {replace}
+ * @package App\Models
+ * @author samark chaisanguan <samarkchsngn@gmail.com>
+ */
 class {replace} extends Model
 {
 
     use HasTranslations;
 
+    /**
+     * @var string
+     */
     protected $table = '{replace_plural}';
 
-    public $translatable = array('name');
+    /**
+     * @var array
+     */
+    public $translatable = [];
 
     /**
      * The attributes that are mass assignable.

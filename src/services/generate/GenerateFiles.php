@@ -391,7 +391,7 @@ class GenerateFiles implements GenerateFilesInterface
      */
     public function makeMigration()
     {
-        $tableName = Str::plural($this->replace);
+        $tableName = strtolower(Str::plural($this->replace));
         $call      = 'create_table_' . $tableName;
         $this->printLine('run migration file');
         $exitCode = Artisan::call('make:migration', array(

@@ -25,11 +25,15 @@ class ApiRepositoryService implements ApiRepositoryServiceInterface
     protected $transformer;
 
     /**
-     * ApiApiRepositoryService constructor.
+     * ApiRepositoryService constructor.
+     * @param \League\Fractal\Manager|null $fractal
      */
-    public function __construct()
+    public function __construct(Manager $fractal)
     {
-        $this->setFractal(new Manager());
+        $this->setFractal($fractal);
+        if (isset($_GET['include'])) {
+            $fractal->parseIncludes($_GET['include']);
+        }
     }
 
     /**
