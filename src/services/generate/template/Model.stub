@@ -10,7 +10,7 @@ class {replace} extends Model
 
     use HasTranslations;
 
-    protected $table = '{replace_sm}s';
+    protected $table = '{replace_plural}';
 
     public $translatable = array('name');
 

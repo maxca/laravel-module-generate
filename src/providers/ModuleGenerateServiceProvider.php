@@ -38,6 +38,7 @@ class ModuleGenerateServiceProvider extends PackageServiceProvider
         $this->registerProviders([
             RouteServiceRegistar::class,
             HtmlServiceProvider::class,
+            AutoLoadRouteProvider::class
         ]);
 
     }

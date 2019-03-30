@@ -3,6 +3,7 @@
 namespace Samark\ModuleGenerate\Services\Generate;
 
 use Artisan;
+use Illuminate\Support\Str;
 
 /**
  * Class GenerateFiles
@@ -375,6 +376,7 @@ class GenerateFiles implements GenerateFilesInterface
     protected function replaceFile($file = '')
     {
         $file = str_replace(array("{replace}"), $this->replace, $file);
+        $file = str_replace(array("{replace_plural}"), Str::plural($this->replace), $file);
         $file = str_replace(array("{replace_sm}"), $this->replaceSmall, $file);
         $file = str_replace(array("{replace_snc}"), $this->replaceSnake, $file);
         $file = str_replace(array("{replace_url}"), $this->replaceUrl, $file);

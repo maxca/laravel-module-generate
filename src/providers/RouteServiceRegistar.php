@@ -5,9 +5,10 @@ namespace Samark\ModuleGenerate\Providers;
 use Samark\ModuleGenerate\Http\Routes\ModuleRoute;
 use Samark\ModuleGenerate\Providers\RouteServiceProvider as ServiceProvider;
 
+
 /**
  * Class RouteServiceRegistar
- * @package Arcanedev\LogViewer\Providers
+ * @package Samark\ModuleGenerate\Providers
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
 class RouteServiceRegistar extends ServiceProvider
@@ -18,9 +19,8 @@ class RouteServiceRegistar extends ServiceProvider
      */
 
     /**
-     * Get Route attributes
-     *
      * @return array
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function routeAttributes()
     {
@@ -29,10 +29,10 @@ class RouteServiceRegistar extends ServiceProvider
         ]);
     }
 
+
     /**
-     * Check if routes is enabled
-     *
-     * @return bool
+     * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function isEnabled()
     {
@@ -62,18 +62,15 @@ class RouteServiceRegistar extends ServiceProvider
      */
 
     /**
-     * Get config value by key
-     *
-     * @param  string      $key
-     * @param  mixed|null  $default
-     *
+     * @param $key
+     * @param null $default
      * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     private function config($key, $default = null)
     {
         /** @var  \Illuminate\Config\Repository  $config */
         $config = $this->app->make('config');
-
         return $config->get(CONFIG_NAME.".route.$key", $default);
     }
 }
