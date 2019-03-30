@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Requests\{replace};
+namespace App\Http\Requests\{replace}\Api;
 
-use App\Contracts\FormRequest;
+use Samark\ModuleGenerate\Contracts\FormRequest;
 
 /**
- * Class {action}{replace}Request
- * @package App\Http\Requests\{replace}
+ * Class {action}{replace}RequestApi
+ * @package App\Http\Requests\{replace}\Api
  * @author samark chaisanguan <samarkchsngn@gmail.com>
  */
 
-class {action}{replace}Request extends FormRequest
+class {action}{replace}RequestApi extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,9 +19,7 @@ class {action}{replace}Request extends FormRequest
      */
     public function authorize()
     {
-        return $this->hasRoles(['admin']) ||
-            $this->hasPermissions(['{replace_sm}.{action_sm}']) ||
-            $this->hasPermissions(['{replace_sm}.*']);
+       return true;
     }
 
     /**
@@ -31,7 +29,7 @@ class {action}{replace}Request extends FormRequest
      */
     public function rules()
     {
-       return [];
+        return [];
     }
 
     /**
@@ -41,16 +39,12 @@ class {action}{replace}Request extends FormRequest
      */
     public function messages()
     {
-        return array (
-           #'name.required' => ':attribute is required'
-        );
+        return [];
 
     }
 
     public function attributes()
     {
-        return array(
-            #'name' => trans('unit.name'),
-        );
+        return [];
     }
 }

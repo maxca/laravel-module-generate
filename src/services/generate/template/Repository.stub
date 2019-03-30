@@ -2,7 +2,7 @@
 
 namespace App\Repositories\{replace};
 
-use App\Contracts\Repository;
+use Samark\ModuleGenerate\Contracts\Repository;
 use App\Interfaces\{replace}Repository;
 use App\Models\{replace};
 

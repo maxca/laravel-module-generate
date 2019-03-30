@@ -2,7 +2,6 @@
 
 namespace App\Repositories\{replace};
 
-use App\Repositories\Services\ApiApiRepositoryService;
 use App\Transformers\{replace}Transformer;
 use Samark\ModuleGenerate\Repositories\Services\ApiRepositoryService;
 
@@ -11,7 +10,7 @@ use Samark\ModuleGenerate\Repositories\Services\ApiRepositoryService;
  * @package App\Repositories\{replace}
  * @author samark chaisanguan <samarkchsngn@gmail.com>
  */
-class {replace}ApiRepository extends ApiApiRepositoryService
+class {replace}ApiRepository extends ApiRepositoryService
 {
     /**
      * {replace}ApiRepository constructor.

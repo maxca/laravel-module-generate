@@ -36,7 +36,7 @@
         | Setting enabled autoload route in path
         |--------------------------------------------------------------------------
         */
-        'autoload'   => true,
+        'autoload'   => false,
         /*
         |--------------------------------------------------------------------------
         | Setting uppercase directory
@@ -53,7 +53,7 @@
 
     'template' => [
         'RequestApi'         => [
-            'resource' => 'template/Request.stub',
+            'resource' => 'template/RequestApi.stub',
             'target'   => 'app/Http/Requests/Api/',
             'needDir'  => true,
             'name'     => 'Request',
@@ -76,7 +76,7 @@
             'target'    => 'app/Http/Controllers/Backend/',
             'namespace' => 'App/',
             'needDir'   => true,
-            'name'      => 'Request',
+            'name'      => 'BackendController',
         ],
         'Model'              => [
             'resource' => 'template/Model.stub',
@@ -87,27 +87,37 @@
             'resource' => 'template/Repository.stub',
             'target'   => 'app/Repositories/',
             'needDir'  => true,
+            'name'     => 'RepositoryEloquent',
         ],
         'ApiRepository'      => [
             'resource' => 'template/ApiRepository.stub',
             'target'   => 'app/Repositories/',
             'needDir'  => true,
-            'name'     => '{replace}ApiRepository',
+            'name'     => 'ApiRepository',
         ],
         'Repository'         => [
             'resource' => 'template/Interface.stub',
             'target'   => 'app/Interfaces/',
             'needDir'  => false,
+            'name'     => 'Repository',
         ],
-        'Route'              => [
+        'RouteApi'           => [
             'resource' => 'template/Route.stub',
-            'target'   => 'Routes/',
+            'target'   => 'Routes/api/',
             'needDir'  => true,
+            'name'     => 'Route',
+        ],
+        'RouteWeb'           => [
+            'resource' => 'template/Route.stub',
+            'target'   => 'Routes/web/',
+            'needDir'  => true,
+            'name'     => 'Route',
         ],
         'Transformer'        => [
             'resource' => 'template/Transformer.stub',
             'target'   => 'app/Transformers/',
             'needDir'  => false,
+            'name'     => 'Transformer',
         ],
         'Factory'            => [
             'resource' => 'template/Factory.stub',
@@ -148,7 +158,8 @@
     */
 
     'need_duplicate' => [
-        'Request' => 'requestType',
-        'Lang'    => 'configLang',
+        'Request'    => 'requestType',
+        'RequestApi' => 'requestType',
+        'Lang'       => 'configLang',
     ],
 ];

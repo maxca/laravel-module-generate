@@ -13,7 +13,7 @@ use App\Repositories\{replace}\{replace}Repository;
 use App\Http\Controllers\ApiController;
 use Symfony\Component\HttpFoundation\Response;
 
-class {replace}Controller extends ApiController
+class {replace}BackendController extends controller
 {
     /**
      * Instance of Repository
