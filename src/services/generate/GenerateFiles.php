@@ -144,8 +144,8 @@ class GenerateFiles implements GenerateFilesInterface
     public function __construct($namespace = '')
     {
         $this->setReplaceConfig($namespace);
-        $this->configPath = $this->getConfig();
-        $this->customPath = $this->getCustomPath();
+        $this->configPath    = $this->getConfig();
+        $this->customPath    = $this->getCustomPath();
         $this->needDuplicate = $this->getNeedDuplicate();
     }
 
@@ -322,7 +322,6 @@ class GenerateFiles implements GenerateFilesInterface
             mkdir($path, 0777, true);
         }
 
-
         $fullPath = $path . '/' . $filename;
         file_put_contents($fullPath, $newFile);
         $this->printLine($filename);
@@ -376,7 +375,7 @@ class GenerateFiles implements GenerateFilesInterface
     protected function replaceFile($file = '')
     {
         $file = str_replace(array("{replace}"), $this->replace, $file);
-        $file = str_replace(array("{replace_plural}"), Str::plural($this->replace), $file);
+        $file = str_replace(array("{replace_plural}"), strtolower(Str::plural($this->replace)), $file);
         $file = str_replace(array("{replace_sm}"), $this->replaceSmall, $file);
         $file = str_replace(array("{replace_snc}"), $this->replaceSnake, $file);
         $file = str_replace(array("{replace_url}"), $this->replaceUrl, $file);
@@ -392,12 +391,12 @@ class GenerateFiles implements GenerateFilesInterface
      */
     public function makeMigration()
     {
-        $tableName = $this->replaceSmall;
+        $tableName = Str::plural($this->replace);
         $call      = 'create_table_' . $tableName;
         $this->printLine('run migration file');
         $exitCode = Artisan::call('make:migration', array(
             'name'     => $call,
-            '--create' => $tableName . 's',
+            '--create' => $tableName,
         ));
         $this->printline('ok');
     }

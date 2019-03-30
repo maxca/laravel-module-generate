@@ -3,9 +3,8 @@
 namespace Samark\ModuleGenerate\Contracts;
 
 use Samark\ModuleGenerate\Exceptions\ValidationException;
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest as Request;
 use Illuminate\Validation\UnauthorizedException;
-
 
 /**
  * Class FormRequest
@@ -29,14 +28,33 @@ abstract class FormRequest extends Request
      */
     public function __construct()
     {
-        $this->auth = config('oauth');
+        $this->auth = $this->getOauth();
     }
 
     /**
-     *
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    protected function getOauth()
+    {
+        return $this->config('oauth');
+    }
+
+    /**
+     * @param $key
+     * @param null $default
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    private function config($key, $default = null)
+    {
+        return config(CONFIG_NAME . ".$key", $default);
+    }
+
+    /**
+     *  overriding validate
      */
     public function validate()
     {
+        parent::validated();
         if (false === $this->authorize() && env('APP_ENV') != 'testing') {
             throw new UnauthorizedException();
         }
@@ -57,7 +75,7 @@ abstract class FormRequest extends Request
     protected function filterRules(): array
     {
         if ($this->onlyEntered === true) {
-            $rules = [];
+            $rules        = [];
             $requireRules = $this->ruleRequired();
             foreach ($this->rules() as $field => $rule) {
                 if ($this->has($field) || in_array($field, $requireRules)) {
@@ -132,20 +150,15 @@ abstract class FormRequest extends Request
     public function all($keys = null)
     {
         $requestData = parent::all($keys);
-
         $requestData = $this->mergeUrlParametersWithRequestData($requestData);
-
         return $requestData;
     }
 
     /**
      * apply validation rules to the ID's in the URL, since Laravel
      * doesn't validate them by default!
-     *
      * Now you can use validation riles like this: `'id' => 'required|integer|exists:items,id'`
-     *
      * @param array $requestData
-     *
      * @return  array
      */
     private function mergeUrlParametersWithRequestData(Array $requestData)
@@ -156,7 +169,6 @@ abstract class FormRequest extends Request
                 $requestData[$param] = app('request')->route()[2][$param];
             }
         }
-
         return $requestData;
     }
 }
