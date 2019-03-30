@@ -80,39 +80,35 @@ class ModuleHtml extends HtmlService
      * @param $moduleId
      * @param $columnId
      */
-    protected function createSearch($params, $moduleId, $columnId)
+    protected function createSearch($status ,$moduleId, $columnId, $key)
     {
-        foreach ($params as $key => $value) {
-            $create['config_module_id']        = $moduleId;
-            $create['config_module_column_id'] = $columnId;
-            $create['status']                  = $value;
-            $create['sort']                    = $key;
-            ConfigModuleSearch::create($create);
-        }
+        $create['config_module_id']        = $moduleId;
+        $create['config_module_column_id'] = $columnId;
+        $create['status']                  = $status;
+        $create['sort']                    = $key;
+        ConfigModuleSearch::create($create);
+
     }
 
     /**
      * @param $rules
      * @param $ruleValues
      * @param $columnId
+     * @return mixed
      */
     protected function createRule($rules, $ruleValues, $columnId)
     {
         $create = array();
-
-        foreach ($rules as $key => $rule) {
-            foreach ($rule as $index => $item) {
-                if (!is_null($item)) {
-                    $create[$key]['config_module_column_id'] = $columnId;
-                    $create[$key]['config_module_rule_id']   = $item;
-                    $create[$key]['value']                   = $ruleValues[$key][$index] ?? null;
-                    $create[$key]['created_at']              = now();
-                    $create[$key]['updated_at']              = now();
-                }
+        foreach ($rules as $index => $item) {
+            if (!is_null($item)) {
+                $create[$index]['config_module_column_id'] = $columnId;
+                $create[$index]['config_module_rule_id']   = $item;
+                $create[$index]['value']                   = $ruleValues[$index] ?? null;
+                $create[$index]['created_at']              = now();
+                $create[$index]['updated_at']              = now();
             }
-
-            ConfigModuleColumnRule::insert($create);
         }
+        return ConfigModuleColumnRule::insert($create);
     }
 
     /**
@@ -134,8 +130,8 @@ class ModuleHtml extends HtmlService
             $create['updated_at']                  = now();
 
             $column = ConfigModuleColumns::create($create);
-            $this->createRule($params['rule'], $params['rule_value'], $column->id);
-            $this->createSearch($params['search_column'], $moduleId, $column->id);
+            $this->createRule($params['rule'][$key], $params['rule_value'][$key], $column->id);
+            $this->createSearch($params['search_column'][$key], $moduleId, $column->id, $key);
         }
         return true;
     }
