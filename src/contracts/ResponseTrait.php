@@ -12,6 +12,11 @@ use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Trait ResponseTrait
+ * @package Samark\ModuleGenerate\Contracts
+ * @author samark chisanguan <samarkchsngn@gmail.com>
+ */
 trait ResponseTrait
 {
     /**
@@ -217,6 +222,11 @@ trait ResponseTrait
         return response(null, 204);
     }
 
+    /**
+     * @param $collection
+     * @param $callback
+     * @return \Illuminate\Http\JsonResponse
+     */
     protected function customRespondWithCollection($collection, $callback)
     {
         $resource = new Collection($collection, $callback);
@@ -233,6 +243,11 @@ trait ResponseTrait
         return $this->respondWithArray($rootScope->toArray());
     }
 
+    /**
+     * @param $item
+     * @param $callback
+     * @return \Illuminate\Http\JsonResponse
+     */
     protected function customRespondWithItem($item, $callback)
     {
         $resource = new Item($item, $callback);
