@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(
     [
-        'prefix'     => 'v1/{replace_plural}',
+        'prefix'     => '{replace_plural}',
         'namespace'  => 'Api\{replace}',
     ],
     function () use ($router) {
