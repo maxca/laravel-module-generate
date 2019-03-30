@@ -11,77 +11,91 @@ trait GenerateFileConfig
 {
 
     /**
-     * @return array
+     * @return array|\Illuminate\Config\Repository|mixed
      */
     public function getConfig()
     {
         if (!empty(config(CONFIG_NAME . '.template'))) {
             return config(CONFIG_NAME . '.template');
         }
-        return array(
-
-            'Request'            => array(
+        return ['template' => [
+            'RequestApi'         => [
                 'resource' => 'template/Request.stub',
-                'target'   => 'app/Http/Requests/',
+                'target'   => 'app/Http/Requests/Api/',
                 'needDir'  => true,
-            ),
-            'Controller'         => array(
-                'resource'  => 'template/Controller.stub',
-                'target'    => 'app/Http/Controllers/API/V1/',
+                'name'     => 'Request',
+            ],
+            'Request'            => [
+                'resource' => 'template/Request.stub',
+                'target'   => 'app/Http/Requests/Backend/',
+                'needDir'  => true,
+                'name'     => 'Request',
+            ],
+            'ControllerApi'      => [
+                'resource'  => 'template/ApiController.stub',
+                'target'    => 'app/Http/Controllers/Api/',
+                'namespace' => 'App/',
                 'needDir'   => true,
-                'namespace' => 'App\Http\Controllers\API\V1',
-            ),
-            'Model'              => array(
+                'name'      => 'Controller',
+            ],
+            'Controller'         => [
+                'resource'  => 'template/BackendController.stub',
+                'target'    => 'app/Http/Controllers/Backend/',
+                'namespace' => 'App/',
+                'needDir'   => true,
+                'name'      => 'Request',
+            ],
+            'Model'              => [
                 'resource' => 'template/Model.stub',
                 'target'   => 'app/Models/',
                 'needDir'  => false,
-            ),
-            'RepositoryEloquent' => array(
+            ],
+            'RepositoryEloquent' => [
                 'resource' => 'template/Repository.stub',
                 'target'   => 'app/Repositories/',
                 'needDir'  => true,
-            ),
-            'Repository'         => array(
+            ],
+            'Repository'         => [
                 'resource' => 'template/Interface.stub',
                 'target'   => 'app/Interfaces/',
                 'needDir'  => false,
-            ),
-            'Route'              => array(
+            ],
+            'Route'              => [
                 'resource' => 'template/Route.stub',
                 'target'   => 'Routes/',
                 'needDir'  => true,
-            ),
-            'Transformer'        => array(
+            ],
+            'Transformer'        => [
                 'resource' => 'template/Transformer.stub',
                 'target'   => 'app/Transformers/',
                 'needDir'  => false,
-            ),
-            'Factory'            => array(
+            ],
+            'Factory'            => [
                 'resource' => 'template/Factory.stub',
                 'target'   => 'database/factories/',
                 'needDir'  => false,
-            ),
-            'Test'               => array(
+            ],
+            'Test'               => [
                 'resource' => 'template/Tests.stub',
                 'target'   => 'Tests/',
                 'needDir'  => true,
-            ),
-            'Seeder'             => array(
+            ],
+            'Seeder'             => [
                 'resource' => 'template/Seeder.stub',
                 'target'   => 'database/seeds/',
                 'needDir'  => true,
-            ),
-            'Lang'               => array(
+            ],
+            'Lang'               => [
                 'resource' => 'template/Lang.stub',
                 'target'   => 'resources/lang/',
                 'needDir'  => true,
                 'lang'     => true,
-            ),
-        );
+            ]
+        ]];
     }
 
     /**
-     * @return bool
+     * @return bool|\Illuminate\Config\Repository|mixed
      */
     public function getCustomPath()
     {
@@ -89,6 +103,20 @@ trait GenerateFileConfig
             return config(CONFIG_NAME . '.custom_path');
         }
         return true;
+    }
+
+    /**
+     * @return array|\Illuminate\Config\Repository|mixed
+     */
+    public function getNeedDuplicate()
+    {
+        if (!empty(config(CONFIG_NAME . '.need_duplicate'))) {
+            return config(CONFIG_NAME . '.need_duplicate');
+        }
+        return [
+            'Request' => 'requestType',
+            'Lang'    => 'configLang',
+        ];
     }
 
 

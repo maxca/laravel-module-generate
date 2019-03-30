@@ -114,10 +114,7 @@ class GenerateFiles implements GenerateFilesInterface
     /**
      * @var array
      */
-    protected $needDuplicate = array(
-        'Request' => 'requestType',
-        'Lang'    => 'configLang',
-    );
+    protected $needDuplicate = array();
 
     /**
      * @var array
@@ -148,6 +145,7 @@ class GenerateFiles implements GenerateFilesInterface
         $this->setReplaceConfig($namespace);
         $this->configPath = $this->getConfig();
         $this->customPath = $this->getCustomPath();
+        $this->needDuplicate = $this->getNeedDuplicate();
     }
 
     /**
