@@ -6,11 +6,11 @@ use Samark\ModuleGenerate\Contracts\ResponseTrait;
 use League\Fractal\Manager;
 
 /**
- * Class ApiApiRepositoryService
+ * Class ApiRepositoryService
  * @package App\Repositories\Services
  * @author samark chisanguan <samarkchsngn@gmail.com>
  */
-class ApiApiRepositoryService implements ApiRepositoryServiceInterface
+class ApiRepositoryService implements ApiRepositoryServiceInterface
 {
     use ResponseTrait;
 
