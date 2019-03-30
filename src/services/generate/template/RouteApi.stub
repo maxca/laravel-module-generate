@@ -1,8 +1,10 @@
 <?php
-$this->group(
+
+use Illuminate\Support\Facades\Route;
+
+Route::group(
     [
         'prefix'     => 'v1/{replace_plural}',
-        'middleware' => ['jwt.auth'],
         'namespace'  => 'Api\{replace}',
     ],
     function () use ($router) {

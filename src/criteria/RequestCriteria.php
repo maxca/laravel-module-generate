@@ -18,8 +18,15 @@ class RequestCriteria implements CriteriaInterface
      */
     private $request;
 
-    private $filters=[];
+    /**
+     * @var array
+     */
+    private $filters = [];
 
+    /**
+     * RequestCriteria constructor.
+     * @param array $filters
+     */
     public function __construct($filters = [])
     {
         $this->request = app('request');
@@ -28,24 +35,22 @@ class RequestCriteria implements CriteriaInterface
 
     /**
      * Apply criteria in query repository
-     *
-     * @param         Builder|Model     $model
+     * @param         Builder|Model $model
      * @param RepositoryInterface $repository
-     *
      * @return mixed
      * @throws \Exception
      */
     public function apply($model, RepositoryInterface $repository)
     {
         $model = $model->where(function ($query) use ($model, $repository) {
-            $requestData = $this->request->all();
+            $requestData      = $this->request->all();
             $fieldsSearchable = $repository->getFieldsSearchable();
             if (count($requestData) > 0 && count($fieldsSearchable) > 0) {
                 $query->where(function ($query) use ($requestData, $fieldsSearchable) {
                     foreach ($requestData as $key => $val) {
                         if (array_key_exists($key, $fieldsSearchable)) {
                             $operation = $fieldsSearchable[$key];
-                            $val = $operation == 'like' ? '%'.$val.'%' : $val;
+                            $val       = $operation == 'like' ? '%' . $val . '%' : $val;
                             $query->where($key, $operation, $val);
                             unset($requestData[$key]);
                         }
@@ -72,7 +77,7 @@ class RequestCriteria implements CriteriaInterface
         if ($this->request->has('offset')) {
             $model = $model->offset($this->request->offset);
         }
-        
+
         if ($this->request->has('limit')) {
             $model = $model->limit($this->request->limit);
         }
@@ -82,7 +87,6 @@ class RequestCriteria implements CriteriaInterface
                 $model = $model->where($field, $value);
             }
         }
-
         return $model;
     }
 }

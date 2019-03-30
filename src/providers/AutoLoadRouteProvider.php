@@ -165,7 +165,7 @@ class AutoLoadRouteProvider extends ServiceProvider
         foreach (scandir(base_path($this->path)) as $key => $path) {
             $path = ucfirst($path);
             if ($this->checkIsDirectory($path) && $this->checkIsFile($path)) {
-                $this->routes[$key]['path']      = $this->getFullFilePath($this->getUpperCaseRouteFile());
+                $this->routes[$key]['path']      = $this->getFullFilePath($path, $this->getUpperCaseRouteFile());
                 $this->routes[$key]['namespace'] = $this->namespace;
             }
         }

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Contracts\HasTranslations;
+use Samark\ModuleGenerate\Contracts\HasTranslations;
 
 class {replace} extends Model
 {
@@ -13,8 +13,6 @@ class {replace} extends Model
     protected $table = '{replace_plural}';
 
     public $translatable = array('name');
-
-
 
     /**
      * The attributes that are mass assignable.

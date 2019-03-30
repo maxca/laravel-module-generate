@@ -1,9 +1,10 @@
 <?php
 
-$this->group(
+use Illuminate\Support\Facades\Route;
+
+Route::group(
     [
-        'prefix'     => 'v1/{replace_plural}',
-        'middleware' => ['jwt.auth'],
+        'prefix'     => '{replace_plural}',
         'namespace'  => 'Backend\{replace}',
     ],
     function () use ($router) {

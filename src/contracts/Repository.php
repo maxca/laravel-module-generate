@@ -9,7 +9,7 @@ use Prettus\Repository\Events\RepositoryEntityDeleted;
 use Prettus\Repository\Events\RepositoryEntityUpdated;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
-use Samark\ModuleGenerate\Criterias\RequestCriteria;
+use Samark\ModuleGenerate\Criteria\RequestCriteria;
 
 /**
  * Class Repository

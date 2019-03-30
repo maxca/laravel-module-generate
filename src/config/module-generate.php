@@ -6,16 +6,16 @@
     |--------------------------------------------------------------------------
     */
     'route' => [
-        'enabled' => true,
+        'enabled'   => true,
         'namespace' => [
-            'api' => 'App\Http\Controllers\Api',
-            'web' => 'App\Http\Controllers\Web',
+            'api' => 'App\Http\Controllers',
+            'web' => 'App\Http\Controllers',
         ],
-        'prefix' => [
+        'prefix'    => [
             'api' => 'api',
-            'web' => 'web',
+            'web' => '',
         ],
-        'path' => [
+        'path'      => [
             'api' => 'routes/api/',
             'web' => 'routes/web/',
         ],
@@ -24,24 +24,24 @@
             'api' => 'api',
             'web' => 'web',
         ],
-    /*
-    |--------------------------------------------------------------------------
-    | Setting route file
-    |--------------------------------------------------------------------------
-    */
-        'filename' => 'Route.php',
+        /*
+        |--------------------------------------------------------------------------
+        | Setting route file
+        |--------------------------------------------------------------------------
+        */
+        'filename'   => 'Route.php',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Setting enabled autoload
-    |--------------------------------------------------------------------------
-    */
-        'autoload' => true,
-    /*
-    |--------------------------------------------------------------------------
-    | Setting uppercase directory
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Setting enabled autoload route in path
+        |--------------------------------------------------------------------------
+        */
+        'autoload'   => true,
+        /*
+        |--------------------------------------------------------------------------
+        | Setting uppercase directory
+        |--------------------------------------------------------------------------
+        */
         'upper_case' => true,
     ],
 
@@ -51,7 +51,7 @@
     |--------------------------------------------------------------------------
     */
 
-    'template'         => [
+    'template' => [
         'RequestApi'         => [
             'resource' => 'template/Request.stub',
             'target'   => 'app/Http/Requests/Api/',
@@ -87,6 +87,12 @@
             'resource' => 'template/Repository.stub',
             'target'   => 'app/Repositories/',
             'needDir'  => true,
+        ],
+        'ApiRepository'      => [
+            'resource' => 'template/ApiRepository.stub',
+            'target'   => 'app/Repositories/',
+            'needDir'  => true,
+            'name'     => '{replace}ApiRepository',
         ],
         'Repository'         => [
             'resource' => 'template/Interface.stub',
