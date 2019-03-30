@@ -15,6 +15,10 @@
             'api' => 'api',
             'web' => 'web',
         ],
+        'path' => [
+            'api' => 'routes/api/',
+            'web' => 'routes/web/',
+        ],
 
         'middleware' => [
             'api' => 'api',

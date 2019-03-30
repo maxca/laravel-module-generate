@@ -55,7 +55,7 @@ class AutoLoadRouteProvider extends ServiceProvider
      */
     protected function getPath($type)
     {
-        return $this->config("path.{$type}", 'routes\api');
+        return $this->config("path.{$type}", 'routes/api');
     }
 
     /**

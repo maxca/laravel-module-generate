@@ -17,14 +17,14 @@ class ModuleRoute extends RouteRegistrar
     public function map()
     {
         $this->name('module-generate::')->group(function () {
-            $this->mapLogsRoutes();
+            $this->mapModuleRoutes();
         });
     }
 
     /**
      * Map the logs routes.
      */
-    private function mapLogsRoutes()
+    private function mapModuleRoutes()
     {
         $this->group([
             'prefix' => 'rule',
