@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Database\Seeder;
 use Samark\ModuleGenerate\ConfigModuleIcons;
 
