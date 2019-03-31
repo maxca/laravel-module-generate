@@ -1,0 +1,1 @@
+<input class="" type="file" name="{{$name}}">

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\{replace};
+namespace App\Http\Requests\Backend\{replace};
 
 use App\Contracts\FormRequest;
 
 /**
  * Class {action}{replace}Request
- * @package App\Http\Requests\{replace}
+ * @package App\Http\Requests\Backend\{replace}
  * @author samark chaisanguan <samarkchsngn@gmail.com>
  */
 
@@ -19,9 +19,10 @@ class {action}{replace}Request extends FormRequest
      */
     public function authorize()
     {
-        return $this->hasRoles(['admin']) ||
-            $this->hasPermissions(['{replace_sm}.{action_sm}']) ||
-            $this->hasPermissions(['{replace_sm}.*']);
+        return true;
+        // return $this->hasRoles(['admin']) ||
+        // $this->hasPermissions(['{replace_sm}.{action_sm}']) ||
+        // $this->hasPermissions(['{replace_sm}.*']);
     }
 
     /**
@@ -41,16 +42,16 @@ class {action}{replace}Request extends FormRequest
      */
     public function messages()
     {
-        return array (
+        return [
            #'name.required' => ':attribute is required'
-        );
+        ];
 
     }
 
     public function attributes()
     {
-        return array(
+        return [
             #'name' => trans('unit.name'),
-        );
+        ];
     }
 }

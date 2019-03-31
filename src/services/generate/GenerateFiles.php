@@ -240,7 +240,7 @@ class GenerateFiles implements GenerateFilesInterface
                 $property = $this->needDuplicate[$key];
                 $this->processDuplicate($key, $property, $list);
             } else {
-                $filename = $this->checkFilename($key, $list['name'] ?? false);
+                $filename = $this->checkFilename($key, $list['name'] ?? false, $list['isView'] ?? false);
                 $this->processReadWriteFile($filename, $list);
             }
         }
@@ -249,10 +249,14 @@ class GenerateFiles implements GenerateFilesInterface
     /**
      * @param $key
      * @param $name
+     * @param bool $isView
      * @return string
      */
-    protected function checkFilename($key, $name)
+    protected function checkFilename($key, $name, $isView = false)
     {
+        if ($isView) {
+            return $name . '.php';
+        }
         if (array_key_exists($key, $this->noNeedKey)) {
             return $this->replace . '.php';
         }

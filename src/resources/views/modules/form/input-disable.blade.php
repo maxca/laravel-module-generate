@@ -1,0 +1,1 @@
+<input class="form-control" value="{{$value ?? null}}"  type="text" name="disabled-input" placeholder="Disabled" disabled="">

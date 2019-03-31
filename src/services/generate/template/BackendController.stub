@@ -1,144 +1,111 @@
 <?php
 
-namespace App\Http\Controllers\V1\{replace};
+namespace App\Http\Controllers\Backend\{replace};
 
-use App\Models\{replace};
-use App\Http\Requests\{replace}\Index{replace}Request;
-use App\Http\Requests\{replace}\Store{replace}Request;
-use App\Http\Requests\{replace}\Show{replace}Request;
-use App\Http\Requests\{replace}\Update{replace}Request;
-use App\Http\Requests\{replace}\Delete{replace}Request;
-use App\Transformers\{replace}Transformer;
-use App\Repositories\{replace}\{replace}Repository;
-use App\Http\Controllers\ApiController;
-use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\{replace}\Store{replace}Request;
+use App\Http\Requests\Backend\{replace}\Index{replace}Request;
+use App\Http\Requests\Backend\{replace}\Detail{replace}Request;
+use App\Http\Requests\Backend\{replace}\Update{replace}Request;
+use App\Http\Requests\Backend\{replace}\Delete{replace}Request;
+use App\Repositories\{replace}\{replace}BackendRepository;
 
 /**
- * Controller {replace}BackendController
- * @package namespace App\Http\Controllers\V1\{replace};
+ * Class {replace}BackendController
+ * @package App\Http\Controllers
  * @author samark chaisanguan <samarkchsngn@gmail.com>
  */
-
-class {replace}BackendController extends controller
+class {replace}BackendController extends Controller
 {
     /**
-     * Instance of Repository
-     *
-     * @var Repository
+     * @var \App\Repositories\{replace}\{replace}BackendRepository
      */
-    private ${replace_sm}Repository;
+    protected $repository;
 
     /**
-     * Instanceof Resource
-     *
-     * @var Resource
+     * ModuleBackendController constructor.
+     * @param \App\Repositories\{replace}\{replace}BackendRepository $repository
      */
-    private ${replace_sm}Transformer;
-
-    /**
-     * Constructor
-     *
-     * @param {replace}Repository ${replace_sm}Repository
-     * @param {replace}Transformer ${replace_sm}Transformer
-     */
-    public function __construct({replace}Repository ${replace_sm}Repository, {replace}Transformer ${replace_sm}Transformer)
+    public function __construct({replace}BackendRepository $repository)
     {
-        $this->{replace_sm}Repository  = ${replace_sm}Repository;
-        $this->{replace_sm}Transformer = ${replace_sm}Transformer;
-        parent::__construct();
+        $this->repository = $repository;
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @param IndexRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param \App\Http\Requests\Backend\{replace}\Index{replace}Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|string
+     * @throws \Throwable
      */
     public function index(Index{replace}Request $request)
     {
-        $filters = [];
-        if ($request->has('name')) {
-            $filters['name'] = $request->input('name');
-        }
-
-        ${replace_sm}s = $this->{replace_sm}Repository->getAll($filters);
-
-        return $this->respondWithCustomCollection(${replace_sm}s, $this->{replace_sm}Transformer);
+        return $this->repository->index();
     }
 
     /**
-     * Display the specified resource.
-     *
+     * @param \App\Http\Requests\Backend\{replace}\Detail{replace}Request $request
      * @param $id
-     * @return \Illuminate\Http\JsonResponse|string
+     * @return mixed
      */
-    public function show(Show{replace}Request $request, $id)
+    public function show(Detail{replace}Request $request, $id)
     {
-        ${replace_sm} = $this->{replace_sm}Repository->findById($id);
-
-            if (!${replace_sm} instanceof {replace}) {
-            return $this->sendNotFoundResponse("The {replace_sm} with id {$id} doesn't exist");
-        }
-
-        return $this->respondWithCustomItem(${replace_sm}, $this->{replace_sm}Transformer);
+        return $this->repository->show($id);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Store{replace}Request $request
-     * @return \Illuminate\Http\JsonResponse|string
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|string
      * @throws \Throwable
+     */
+    public function create()
+    {
+        return $this->repository->create();
+    }
+
+    /**
+     * @param \App\Http\Requests\Backend\{replace}\Store{replace}Request $request
+     * @return mixed|void
      */
     public function store(Store{replace}Request $request)
     {
-        ${replace_sm} = $this->{replace_sm}Repository->create($request->all());
-
-            if (!${replace_sm} instanceof {replace}) {
-            return $this->sendCustomResponse(Response::HTTP_EXPECTATION_FAILED, 'Error occurred on creating {replace}');
-        }
-
-        return $this->setStatusCode(201)->respondWithCustomItem(${replace_sm}, $this->{replace_sm}Transformer);
+        return $this->repository->store($request->all());
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param Update{replace}Request $request
+     * @param \App\Http\Requests\Backend\{replace}\Update{replace}Request $request
      * @param $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|string
      * @throws \Throwable
+     */
+    public function edit(Update{replace}Request $request, $id)
+    {
+        return $this->repository->edit($id);
+    }
+
+    /**
+     * @param \App\Http\Requests\Backend\{replace}\Update{replace}Request $request
+     * @param $id
+     * @return mixed|void
      */
     public function update(Update{replace}Request $request, $id)
     {
-        ${replace_sm} = $this->{replace_sm}Repository->findById($id);
-
-            if (!${replace_sm} instanceof {replace}) {
-            return $this->sendNotFoundResponse("The {replace_sm} with id {$id} doesn't exist");
-        }
-
-        ${replace_sm} = $this->{replace_sm}Repository->update(${replace_sm}, $request->all());
-
-        return $this->respondWithCustomItem(${replace_sm}, $this->{replace_sm}Transformer);
+        return $this->repository->update($id, $request->all());
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * @param \App\Http\Requests\Backend\{replace}\Delete{replace}Request $request
      * @param $id
-     * @return \Illuminate\Http\JsonResponse|string
+     * @return mixed|void
+     */
+    public function delete(Delete{replace}Request $request, $id)
+    {
+        return $this->repository->delete($id);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|string
      * @throws \Throwable
      */
-    public function destroy(Delete{replace}Request $request, $id)
+    public function export()
     {
-        ${replace_sm} = $this->{replace_sm}Repository->findById($id);
-
-            if (!${replace_sm} instanceof {replace}) {
-            return $this->sendNotFoundResponse("The {replace_sm} with id {$id} doesn't exist");
-        }
-
-        $this->{replace_sm}Repository->destroy(${replace_sm});
-
-        return $this->responseDeleteSuccess();
+        return $this->repository->export();
     }
 }

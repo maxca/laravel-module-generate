@@ -36,7 +36,7 @@
         | Setting enabled autoload route in path
         |--------------------------------------------------------------------------
         */
-        'autoload'   => false,
+        'autoload'   => true,
         /*
         |--------------------------------------------------------------------------
         | Setting uppercase directory
@@ -95,6 +95,12 @@
             'needDir'  => true,
             'name'     => 'ApiRepository',
         ],
+        'BackendRepository'  => [
+            'resource' => 'template/BackendRepository.stub',
+            'target'   => 'app/Repositories/',
+            'needDir'  => true,
+            'name'     => 'BackendRepository',
+        ],
         'Repository'         => [
             'resource' => 'template/Interface.stub',
             'target'   => 'app/Interfaces/',
@@ -102,13 +108,13 @@
             'name'     => 'Repository',
         ],
         'RouteApi'           => [
-            'resource' => 'template/Route.stub',
+            'resource' => 'template/RouteApi.stub',
             'target'   => 'Routes/api/',
             'needDir'  => true,
             'name'     => 'Route',
         ],
         'RouteWeb'           => [
-            'resource' => 'template/Route.stub',
+            'resource' => 'template/RouteWeb.stub',
             'target'   => 'Routes/web/',
             'needDir'  => true,
             'name'     => 'Route',
@@ -139,6 +145,40 @@
             'target'   => 'resources/lang/',
             'needDir'  => true,
             'lang'     => true,
+        ],
+        /*
+        |--------------------------------------------------------------------------
+        | set view
+        |--------------------------------------------------------------------------
+        */
+
+        'IndexView'  => [
+            'resource' => 'template/index.blade.stub',
+            'target'   => 'resources/views/',
+            'needDir'  => true,
+            'name'     => 'index.blade',
+            'isView'   => true,
+        ],
+        'EditView'   => [
+            'resource' => 'template/edit.blade.stub',
+            'target'   => 'resources/views/',
+            'needDir'  => true,
+            'name'     => 'edit.blade',
+            'isView'   => true,
+        ],
+        'DetailView' => [
+            'resource' => 'template/detail.blade.stub',
+            'target'   => 'resources/views/',
+            'needDir'  => true,
+            'name'     => 'detail.blade',
+            'isView'   => true,
+        ],
+        'CreateView' => [
+            'resource' => 'template/create.blade.stub',
+            'target'   => 'resources/views/',
+            'needDir'  => true,
+            'name'     => 'create.blade',
+            'isView'   => true,
         ],
     ],
 
