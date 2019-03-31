@@ -80,7 +80,7 @@ class BackendService extends AbstractBackendService
         $data = [];
         foreach ($this->moduleData->column as $key => $column) {
             foreach ($column->rule as $key => $rule) {
-                $data[$key][$column->name][] = $rule->alert_message;
+                $data[$column->name][$rule->name] = $rule->alert_message;
             }
         }
         return $data;
@@ -94,7 +94,7 @@ class BackendService extends AbstractBackendService
         $data = [];
         foreach ($this->moduleData->column as $key => $column) {
             foreach ($column->rule as $key => $rule) {
-                $data[$key][$column->name][] = $rule->name;
+                $data[$column->name][$rule->name] = true;
             }
         }
         return $data;

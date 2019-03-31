@@ -4,25 +4,27 @@
         @foreach($columns as $column)
             <th>{{$column->name}}</th>
         @endforeach
-        <th>Actions</th>
+        <th class="text-center" width="18%">Actions</th>
     </tr>
     </thead>
     <tbody>
-{{--    {{dd($columns_name)}}--}}
+
     @if($data->total() != 0)
-        <tr>
-            @foreach($data as $key => $column)
-                {{dd($column)}}
-                <td>{{ $column->cate_name }}</td>
-            @endforeach
-            <td>
-                @include('module-generate::modules.components.list-button-group')
-            </td>
-        </tr>
+        @foreach($data as $key => $column)
+            <tr>
+                @foreach($columns_name as $k => $node)
+                    <td>{{ $column->{$node} }}</td>
+                @endforeach
+                <td class="text-right" width="15%">
+                    @include('module-generate::modules.components.list-button-group')
+                </td>
+            </tr>
+        @endforeach
     @else
         <tr>
             <td class="text-center" colspan="{{count($columns) + 1}}">ไม่พบข้อมูล</td>
         </tr>
     @endif
+
     </tbody>
 </table>

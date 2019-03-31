@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Backend\{replace};
 
-use App\Contracts\FormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class {action}{replace}Request

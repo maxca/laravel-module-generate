@@ -139,7 +139,8 @@ abstract class Repository extends BaseRepository implements CacheableInterface
      */
     public function paginate($limit = null, $columns = ['*'], $method = "paginate")
     {
-        $limit = Request::get('limit') ?? $this->limit;
+        $limit = !empty($limit) ? $limit : $this->limit;
+        $limit = Request::get('limit') ?? $limit;
         return parent::paginate($limit, $columns, $method);
     }
 }
