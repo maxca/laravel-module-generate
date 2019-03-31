@@ -105,7 +105,7 @@ class BackendService extends AbstractBackendService
      */
     protected function getModuleData()
     {
-        return $this->module->findMouduleByname($this->containerName)
+        return $this->module->findModuleByName($this->containerName)
             ->first();
     }
 

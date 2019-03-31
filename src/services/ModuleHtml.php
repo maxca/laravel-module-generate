@@ -80,7 +80,7 @@ class ModuleHtml extends HtmlService
      * @param $moduleId
      * @param $columnId
      */
-    protected function createSearch($status ,$moduleId, $columnId, $key)
+    protected function createSearch($status, $moduleId, $columnId, $key)
     {
         $create['config_module_id']        = $moduleId;
         $create['config_module_column_id'] = $columnId;
@@ -165,8 +165,26 @@ class ModuleHtml extends HtmlService
      */
     public function json($id)
     {
-        return $this->model->where(['id' => $id])
-            ->with(['action'])
+        $this->model = $this->model->where(['id' => $id]);
+        return $this->withRelation()->get();
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function findModuleByName($name)
+    {
+        $this->model = $this->model->where(['name' => $name]);
+        return $this->withRelation()->get();
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function withRelation()
+    {
+        return $this->model->with(['action'])
             ->with(['search' => function ($query) {
                 $query->with('column');
             }])
@@ -174,8 +192,7 @@ class ModuleHtml extends HtmlService
                 $query->with('type');
                 $query->with('icon');
                 $query->with('rule');
-            }])
-            ->get();
+            }]);
     }
 
     /**
