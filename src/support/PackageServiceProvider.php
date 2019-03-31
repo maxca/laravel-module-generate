@@ -140,6 +140,15 @@ abstract class PackageServiceProvider extends ServiceProvider
     }
 
     /**
+     * Get the seeder path.
+     * @return string
+     */
+    protected function getSeederPath()
+    {
+        return $this->getBasePath() . DS . 'database' . DS . 'seeder';
+    }
+
+    /**
      * Get the base resources path.
      * @return string
      */
@@ -276,6 +285,17 @@ abstract class PackageServiceProvider extends ServiceProvider
             $this->getMigrationsPath() => database_path('migrations')
         ], 'migrations');
     }
+
+    /**
+     * Publish the seeder files.
+     */
+    protected function publishSeeders()
+    {
+        $this->publishes([
+            $this->getSeederPath() => database_path('seeder')
+        ], 'seeder');
+    }
+
 
     /**
      * Publish and load the views if $load argument is true.
