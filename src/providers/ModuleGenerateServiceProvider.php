@@ -38,8 +38,13 @@ class ModuleGenerateServiceProvider extends PackageServiceProvider
         $this->registerProviders([
             RouteServiceRegistar::class,
             HtmlServiceProvider::class,
-            AutoLoadRouteProvider::class
         ]);
+
+        if (config($this->package . '.route.autoload') == true) {
+            $this->registerProviders([
+                AutoLoadRouteProvider::class,
+            ]);
+        }
 
         $this->loadMigrationsFrom($this->getMigrationsPath());
 
