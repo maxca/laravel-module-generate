@@ -39,6 +39,11 @@ class GenerateFiles implements GenerateFilesInterface
     protected $replaceUrl;
 
     /**
+     * @var
+     */
+    protected $replacePlural;
+
+    /**
      * set action
      * @var string
      */
@@ -154,10 +159,11 @@ class GenerateFiles implements GenerateFilesInterface
      */
     protected function setReplaceConfig($replace)
     {
-        $this->replace      = ucfirst($replace);
-        $this->replaceSmall = strtolower($replace);
-        $this->replaceSnake = self::strCamelCase($replace);
-        $this->replaceUrl   = $this->urlGenerate($this->replaceSnake);
+        $this->replace       = ucfirst($replace);
+        $this->replaceSmall  = strtolower($replace);
+        $this->replaceSnake  = self::strCamelCase($replace);
+        $this->replaceUrl    = $this->urlGenerate($this->replaceSnake);
+        $this->replacePlural = strtolower(Str::plural($this->replace));
     }
 
     /**
