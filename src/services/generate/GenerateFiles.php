@@ -39,7 +39,7 @@ class GenerateFiles implements GenerateFilesInterface
     protected $replaceUrl;
 
     /**
-     * @var
+     * @var replace plural
      */
     protected $replacePlural;
 
@@ -327,16 +327,24 @@ class GenerateFiles implements GenerateFilesInterface
         } else {
             $path = $this->path . '/' . $list['target'] . '/';
         }
+        $this->wirteFileAndMakePath($path, $filename, $newFile);
+        $this->printLine($filename);
+    }
 
+    /**
+     * @param $path
+     * @param $filename
+     * @param $newFile
+     */
+    protected function wirteFileAndMakePath($path, $filename, $newFile)
+    {
         if (!is_dir($path)) {
-            mkdir($path, 0777, true);
+            mkdir($path, 0755, true);
         }
 
         $fullPath = $path . '/' . $filename;
         file_put_contents($fullPath, $newFile);
-        $this->printLine($filename);
     }
-
 
     /**
      * @param string $text
@@ -360,11 +368,15 @@ class GenerateFiles implements GenerateFilesInterface
                 $file = file_get_contents($fileLocation);
                 return $this->replaceFile($file);
             }
+
         } elseif (file_exists((__DIR__ . '/' . $config))) {
-            $file = file_get_contents(__DIR__ . '/' . $config);
+            $fileLocation = __DIR__ . '/' . $config;
+            $file         = file_get_contents($fileLocation);
             return $this->replaceFile($file);
         }
-        throw new \Exception("Can't read file :" . $config);
+
+        throw new \Exception("Can't read file :" . $fileLocation);
+
 
     }
 
@@ -385,7 +397,7 @@ class GenerateFiles implements GenerateFilesInterface
     protected function replaceFile($file = '')
     {
         $file = str_replace(array("{replace}"), $this->replace, $file);
-        $file = str_replace(array("{replace_plural}"), strtolower(Str::plural($this->replace)), $file);
+        $file = str_replace(array("{replace_plural}"), $this->replacePlural, $file);
         $file = str_replace(array("{replace_sm}"), $this->replaceSmall, $file);
         $file = str_replace(array("{replace_snc}"), $this->replaceSnake, $file);
         $file = str_replace(array("{replace_url}"), $this->replaceUrl, $file);
