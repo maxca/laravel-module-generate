@@ -41,6 +41,8 @@ class ModuleGenerateServiceProvider extends PackageServiceProvider
             AutoLoadRouteProvider::class
         ]);
 
+        $this->loadMigrationsFrom($this->getMigrationsPath());
+
     }
 
     /**

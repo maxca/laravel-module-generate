@@ -3,6 +3,7 @@
 namespace Samark\ModuleGenerate\Criteria;
 
 use Prettus\Repository\Contracts\CriteriaInterface;
+use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
  * Class ScopeOutletCriteria
@@ -45,7 +46,7 @@ class WhereDateRangeCriteria implements CriteriaInterface
      * @return mixed
      * @throws \Exception
      */
-    public function apply($model)
+    public function apply($model,RepositoryInterface $repository)
     {
         return $model->whereBetween($this->column, [$this->startDate, $this->endDate]);
     }

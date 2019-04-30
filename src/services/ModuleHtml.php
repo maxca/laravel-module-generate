@@ -8,6 +8,7 @@ use Samark\ModuleGenerate\ConfigModuleColumnRule;
 use Samark\ModuleGenerate\ConfigModuleSearch;
 use Samark\ModuleGenerate\ConfigModuleColumns;
 use Samark\ModuleGenerate\Services\Generate\GenerateFiles;
+use Samark\ModuleGenerate\Services\Generate\GenerateMigration;
 
 /**
  * Class ModuleHtml
@@ -50,8 +51,14 @@ class ModuleHtml extends HtmlService
     ];
 
     /**
+     * @var array
+     */
+    protected $columnsList = [];
+
+    /**
      * @param array $params
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function store($params = array())
     {
@@ -59,8 +66,10 @@ class ModuleHtml extends HtmlService
         return $this->redirect();
     }
 
+
     /**
      * @param $params
+     * @throws \Exception
      */
     public function createModule($params)
     {
@@ -120,12 +129,14 @@ class ModuleHtml extends HtmlService
     {
 
         foreach ($params['column_name'] as $key => $value) {
+
             $create['config_module_input_type_id'] = $params['type'][$key];
             $create['config_module_icon_id']       = $params['icon'][$key] ?? null;
             $create['config_module_id']            = $moduleId;
             $create['sort']                        = $key + 1;
             $create['name']                        = $value;
             $create['label']                       = $params['label'][$key] ?? null;
+            $create['value']                       = $params['value'][$key] ?? null;
             $create['created_at']                  = now();
             $create['updated_at']                  = now();
 
@@ -197,6 +208,7 @@ class ModuleHtml extends HtmlService
 
     /**
      * @param $module
+     * @throws \Exception
      */
     public function generateFile($module)
     {
@@ -204,6 +216,47 @@ class ModuleHtml extends HtmlService
         $genFile->setPath(base_path());
         $genFile->setTemplatePath('public/');
         $genFile->execute();
-        $genFile->makeMigration();
+        $this->genrateMigration($module);
+        $this->generateModel($module);
+        #$genFile->makeMigration();
     }
+
+    /**
+     * @param $module
+     * @return array
+     */
+    protected function getColumnForMigration($module)
+    {
+        $data = array();
+        foreach ($module->column()->get() as $key => $column) {
+            $this->columnsList[$column->name] = $column->type_name;
+            $data[$key]['name']               = $column->name;
+            $data[$key]['value']              = explode(",", $column->value);
+            $data[$key]['type']               = $column->type->name;
+            $data[$key]['rule']               = $column->rule->first()->name == 'required' ? 'required' : 'nullable';
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param $module
+     * @throws \Exception
+     */
+    protected function genrateMigration($module)
+    {
+        $this->getColumnForMigration($module);
+        $app = app(GenerateMigration::class, ['namespace' => $module->name]);
+        $app->initGenMigration($this->getColumnForMigration($module));
+    }
+
+    /**
+     * @param $module
+     */
+    protected function generateModel($module)
+    {
+        $app = app(GenerateMigration::class, ['namespace' => $module->name]);
+        $app->genModelFillable($this->columnsList);
+    }
+
 }
