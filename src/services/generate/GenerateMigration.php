@@ -150,6 +150,7 @@ class GenerateMigration extends GenerateFiles
         $template = base_path() . '/' . $this->templatePath . '/Model.stub';
         $file     = file_get_contents($template);
         $file     = str_replace("{replace}", $this->replace, $file);
+        $file     = str_replace("{replace_plural}", $this->replacePlural, $file);
         $file     = str_replace("{contents}", $contents, $file);
         return $file;
     }
