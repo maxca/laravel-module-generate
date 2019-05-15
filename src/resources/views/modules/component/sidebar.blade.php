@@ -1,3 +1,4 @@
+
 @if(isset($sidebars))
     @foreach($sidebars  as $sidebar)
         @if($sidebar->type == 'label')

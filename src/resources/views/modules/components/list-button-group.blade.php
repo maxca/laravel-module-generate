@@ -7,7 +7,8 @@
        data-placement="top" title="Edit" class="btn btn-primary btn-sm">
         <i class="fas fa-edit"></i>
     </a>
-    <a href="{{route($link_action['delete'], ['id' => $column->id]) }}" class="btn btn-sm btn-danger">
+    <a href="{{route($link_action['delete'], ['id' => $column->id]) }}" class="btn btn-sm btn-danger" data-method="delete">
         <i class="fas fa-trash"></i>
     </a>
+
 </div>

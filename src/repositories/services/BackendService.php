@@ -3,6 +3,8 @@
 namespace Samark\ModuleGenerate\Repositories\Services;
 
 use Samark\ModuleGenerate\Services\ModuleHtml;
+use Illuminate\Support\Facades\Request;
+use Samark\ModuleGenerate\Sidebar;
 
 /**
  * Class BackendService
@@ -89,12 +91,15 @@ class BackendService extends AbstractBackendService
     /**
      * @return array
      */
-    protected function getRules(): array
+    protected function getRules($find = false): array
     {
         $data = [];
         foreach ($this->moduleData->column as $key => $column) {
             foreach ($column->rule as $key => $rule) {
                 $data[$column->name][$rule->name] = true;
+            }
+            if ($find == true && $column->type->name == 'file') {
+                unset($data[$column->name]);
             }
         }
         return $data;
@@ -112,9 +117,11 @@ class BackendService extends AbstractBackendService
     /**
      * @return mixed
      */
-    protected function getEloquent()
+    protected function getEloquent($find = false)
     {
-        return $this->eloquent->paginate($this->getLimit());
+        return $find
+            ? $this->eloquent->find($this->id)
+            : $this->eloquent->paginate($this->getLimit());
     }
 
     /**
@@ -141,10 +148,39 @@ class BackendService extends AbstractBackendService
         return $data;
     }
 
+    /**
+     * @return array
+     */
     protected function getColumnName(): array
     {
         return $this->moduleData->column->pluck('name')
             ->toArray();
     }
+
+    /**
+     * @param array $params
+     * @return mixed|void
+     */
+    public function store($params)
+    {
+        foreach ($params as $key => $request) {
+            if (request()->hasFile($key)) {
+                $name = request()->file($key)->getClientOriginalName();
+                request()->file($key)
+                    ->move(public_path('/upload'), $name);
+                $params[$key] = '/upload/' . $name;
+            }
+        }
+        return parent::store($params);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSidebars()
+    {
+        return Sidebar::get();
+    }
+
 
 }

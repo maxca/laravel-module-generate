@@ -69,24 +69,36 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
      */
     protected $containerName;
 
+    /** @var integer
+     * set searching id 
+     */
+    protected $id;
+
+    /**
+     * @var setting $sidebars
+     */
+    protected $sidebars;
+
     /**
      * @param $view
      * @param bool $needData
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed|string
      * @throws \Throwable
      */
-    public function render($view, $needData = true)
+    public function render($view, $needData = true, $find = false)
     {
         return $needData
             ? view($view, ['module' => $this->containerName])
-                ->with(['data' => $this->getEloquent()])
-                ->with(['rules' => $this->getRules()])
+                ->with(['data' => $this->getEloquent($find)])
+                ->with(['rules' => $this->getRules($find)])
                 ->with(['messages' => $this->getMessages()])
                 ->with(['search' => $this->getSearch()])
                 ->with(['actions' => $this->getActions()])
                 ->with(['columns' => $this->getColumns()])
                 ->with(['link_action' => $this->getLinkAction()])
                 ->with(['columns_name' => $this->getColumnName()])
+                ->with(['sidebars' => $this->getSidebars()])
+                ->with(['local' => app()->getLocale()])
                 ->render()
             : view($view, ['module' => $this->containerName]);
     }
@@ -97,6 +109,22 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
     protected function getActions()
     {
         return $this->action;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSidebars()
+    {
+        return $this->sidebars;
+    }
+
+    /**
+     * @param mixed $sidebars
+     */
+    public function setSidebars($sidebars): void
+    {
+        $this->sidebars = $sidebars;
     }
 
     /**
@@ -259,7 +287,8 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
      */
     public function show($id)
     {
-        return $this->render($this->views['show']);
+        $this->id = $id;
+        return $this->render($this->views['show'], true, true);
     }
 
     /**
@@ -288,7 +317,8 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
      */
     public function edit($id)
     {
-        return $this->render($this->views['edit']);
+        $this->id = $id;
+        return $this->render($this->views['edit'], true, true);
     }
 
     /**
