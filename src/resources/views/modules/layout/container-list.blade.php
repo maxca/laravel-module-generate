@@ -42,17 +42,14 @@
             </div><!--col-->
         </div><!--row-->
         <div class="row">
-            <div class="col-7">
+            <div class="col">
                 <div class="float-left">
                     {{ $data->total() }} total items
                 </div>
+                <div class="float-right">{!! $data->render() !!}</div>
             </div><!--col-->
 
-            <div class="col-5">
-                <div class="float-right">
 
-                </div>
-            </div><!--col-->
         </div><!--row-->
     </div><!--card-body-->
 </div>

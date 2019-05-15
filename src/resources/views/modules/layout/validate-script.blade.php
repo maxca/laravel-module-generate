@@ -54,6 +54,10 @@
                 }
 
             });
+
+            $.validator.addMethod('size', function (value, element, params) {
+                return $(element)[0].files[0].size > params[0];
+            },'File size more than limit')
         })
 
     </script>

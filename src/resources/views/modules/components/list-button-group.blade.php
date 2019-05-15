@@ -12,3 +12,13 @@
     </a>
 
 </div>
+
+@push('after-scripts')
+    <script>
+        $(".btn-danger").on('click', function () {
+            $('body').loading({
+                stoppable: true
+            });
+        })
+    </script>
+@endpush

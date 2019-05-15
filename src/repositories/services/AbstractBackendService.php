@@ -70,7 +70,7 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
     protected $containerName;
 
     /** @var integer
-     * set searching id 
+     * set searching id
      */
     protected $id;
 
@@ -78,6 +78,11 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
      * @var setting $sidebars
      */
     protected $sidebars;
+
+    /**
+     * @var array
+     */
+    protected $imageColumns = [];
 
     /**
      * @param $view
@@ -99,8 +104,11 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
                 ->with(['columns_name' => $this->getColumnName()])
                 ->with(['sidebars' => $this->getSidebars()])
                 ->with(['local' => app()->getLocale()])
+                ->with(['images' => $this->imageColumns])
                 ->render()
-            : view($view, ['module' => $this->containerName]);
+            : view($view, ['module' => $this->containerName])
+                ->with(['images' => $this->imageColumns])
+                ->with(['local' => app()->getLocale()]);
     }
 
     /**

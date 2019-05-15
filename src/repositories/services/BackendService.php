@@ -56,7 +56,7 @@ class BackendService extends AbstractBackendService
      */
     protected function getLimit()
     {
-        return $this->limit ?? config('module.backend.limit', 30);
+        return $this->limit ?? config(CONFIG_NAME.'.backend.limit', 30);
     }
 
     /**
@@ -97,6 +97,10 @@ class BackendService extends AbstractBackendService
         foreach ($this->moduleData->column as $key => $column) {
             foreach ($column->rule as $key => $rule) {
                 $data[$column->name][$rule->name] = true;
+                if($column->type->name == 'file') {
+                    $data[$column->name]['extension'] = 'jpg|jpeg|png';
+                    $data[$column->name]['size'] = '2097152';
+                }
             }
             if ($find == true && $column->type->name == 'file') {
                 unset($data[$column->name]);
@@ -163,6 +167,25 @@ class BackendService extends AbstractBackendService
      */
     public function store($params)
     {
+        self::upload($params);
+        return parent::store($params);
+    }
+
+    /**
+     * @param $id
+     * @param $params
+     * @return mixed|void
+     */
+    public function update($id, $params)
+    {
+        self::upload($params);
+        return parent::update($id, $params); 
+    }
+
+    /**
+     * @param $params
+     */
+    protected function upload(&$params) {
         foreach ($params as $key => $request) {
             if (request()->hasFile($key)) {
                 $name = request()->file($key)->getClientOriginalName();
@@ -171,9 +194,7 @@ class BackendService extends AbstractBackendService
                 $params[$key] = '/upload/' . $name;
             }
         }
-        return parent::store($params);
     }
-
     /**
      * @return mixed
      */

@@ -58,6 +58,7 @@
     {!! script(mix('js/backend.js')) !!}
 
     <script src="{{asset('js/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('js/additional-methods.min.js')}}"></script>
     <script src="{{asset('bower_components/jquery-loading/dist/jquery.loading.js')}}"></script>
     @stack('after-scripts')
     </body>
