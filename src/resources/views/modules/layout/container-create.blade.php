@@ -6,7 +6,8 @@
             <div class="card-body">
                 @foreach($columns as $key => $column)
                     @include('module-generate::modules.components.form-group-one-row-input-group-icon-prefix',[
-                        'name' => $column['name'] , 'type' => $column->type->name, 'icon' => $column->icon->name
+                        'name' => $column['name'] , 'type' => $column->type->name,
+                        'icon' => $column->icon ? $column->icon->name : 'fa fa-user'
                     ])
                 @endforeach
 

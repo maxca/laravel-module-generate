@@ -16,6 +16,7 @@ class Sidebar extends Model
      */
     protected $fillable = [
         'id',
+        'name',
         'parent_id',
         'status',
         'link',

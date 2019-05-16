@@ -21,7 +21,7 @@ class GenerateMigration extends GenerateFiles
      */
     protected $templateColumnList = [
         'base_migration' => 'baseMigration.stub',
-        'text_nullable'  => 'columnString.stub',
+        'text_nullable'  => 'columnStringNull.stub',
         'text_required'  => 'columnString.stub',
         'enum_nullable'  => 'columnEnumNull.stub',
         'enum_required'  => 'columnEnum.stub',

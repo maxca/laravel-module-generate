@@ -2,11 +2,13 @@
 
 namespace Samark\ModuleGenerate\Services;
 
+use Illuminate\Support\Str;
 use Samark\ModuleGenerate\ConfigModule;
 use Samark\ModuleGenerate\ConfigModuleAction;
 use Samark\ModuleGenerate\ConfigModuleColumnRule;
 use Samark\ModuleGenerate\ConfigModuleSearch;
 use Samark\ModuleGenerate\ConfigModuleColumns;
+use Samark\ModuleGenerate\Sidebar;
 use Samark\ModuleGenerate\Services\Generate\GenerateFiles;
 use Samark\ModuleGenerate\Services\Generate\GenerateMigration;
 
@@ -17,6 +19,15 @@ use Samark\ModuleGenerate\Services\Generate\GenerateMigration;
  */
 class ModuleHtml extends HtmlService
 {
+    /**
+     * @var array
+     */
+    protected $sidebars = [
+        'main'   => 'Managment',
+        'create' => 'Create',
+        'list'   => 'List'
+    ];
+
     /**
      * @var string
      */
@@ -218,6 +229,8 @@ class ModuleHtml extends HtmlService
         $genFile->execute();
         $this->genrateMigration($module);
         $this->generateModel($module);
+        $this->generateSidebar($module);
+
         #$genFile->makeMigration();
     }
 
@@ -229,13 +242,16 @@ class ModuleHtml extends HtmlService
     {
         $data = array();
         foreach ($module->column()->get() as $key => $column) {
+            $columnRule                       = $column->rule->first();
             $this->columnsList[$column->name] = $column->type_name;
             $data[$key]['name']               = $column->name;
             $data[$key]['value']              = explode(",", $column->value);
             $data[$key]['type']               = $column->type->name;
-            $data[$key]['rule']               = $column->rule->first()->name == 'required' ? 'required' : 'nullable';
+            $data[$key]['rule']               = !is_null($columnRule)
+            && $columnRule == 'required' ? 'required' : 'nullable';
         }
 
+        
         return $data;
     }
 
@@ -258,5 +274,35 @@ class ModuleHtml extends HtmlService
         $app = app(GenerateMigration::class, ['namespace' => $module->name]);
         $app->genModelFillable($this->columnsList);
     }
+
+    /**
+     * @param $module
+     */
+    protected function generateSidebar($module)
+    {
+        $parentId = 0;
+        foreach ($this->sidebars as $key => $value) {
+            $data = [
+                'name'        => [
+                    'en' => ucfirst($module->name) . ' ' . $value,
+                    'th' => ucfirst($module->name) . ' ' . $value,
+                ],
+                'parent_id'   => $parentId,
+                'status'      => 'active',
+                'link'        => config(CONFIG_NAME . '.backend.link') . '/' . Str::plural($module->name),
+                'icon'        => 'nav-icon far fa-user',
+                'type'        => $key == 'main' ? 'parent' : 'child',
+                'permissions' => strtolower($module->name) . '.*',
+                'roles'       => 'admin',
+            ];
+
+            $response = Sidebar::create($data);
+            if ($key == 'main') {
+                $parentId = $response->id;
+            }
+        }
+
+    }
+
 
 }

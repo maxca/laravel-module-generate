@@ -6,7 +6,8 @@
     */
     'backend' => [
         'limit' => '30',
-        'image' => 'jpg|jpeg|png'
+        'image' => 'jpg|jpeg|png',
+        'link'  => 'admin',
     ],
 
     /*
@@ -182,6 +183,13 @@
             'target'   => 'resources/views/',
             'needDir'  => true,
             'name'     => 'detail.blade',
+            'isView'   => true,
+        ],
+        'ShowView' => [
+            'resource' => 'template/show.blade.stub',
+            'target'   => 'resources/views/',
+            'needDir'  => true,
+            'name'     => 'show.blade',
             'isView'   => true,
         ],
         'CreateView' => [
