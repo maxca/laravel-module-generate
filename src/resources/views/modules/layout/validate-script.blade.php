@@ -1,3 +1,4 @@
+
 @push('after-scripts')
     <script type="text/javascript">
         $(document).ready(function () {
@@ -56,9 +57,46 @@
             });
 
             $.validator.addMethod('size', function (value, element, params) {
-                return $(element)[0].files[0].size > params[0];
+
+                console.log($(element)[0].files[0].size);
+                console.log(params);
+                return $(element)[0].files[0].size < params;
             },'File size more than limit')
-        })
+
+            {{--// datepicker--}}
+            {{--$('.datetime').daterangepicker({--}}
+                {{--singleDatePicker: true,--}}
+                {{--showDropdowns: true,--}}
+                {{--minYear: 1901,--}}
+                {{--maxYear: {!! now()->addYears(2)->year !!}--}}
+            {{--},function (start,end) {--}}
+                {{--console.log(start)--}}
+                {{--console.log(end)--}}
+            {{--});--}}
+
+
+        });
+
+
 
     </script>
+    {{--<script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>--}}
+    {{--<script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>--}}
+
+    {{--<script>--}}
+        {{--$(function(){--}}
+            {{--// CKEDITOR.replace( '.input-textarea' );--}}
+            {{--$.each($("textarea"), function(){--}}
+                {{--console.log($(this).attr('name'));--}}
+                {{--let name = $(this).attr('name');--}}
+                {{--CKEDITOR.replace(name);--}}
+            {{--});--}}
+            {{--// CKEDITOR.replace( 'contents' );--}}
+            {{--// $('textarea').ckeditor();--}}
+
+        {{--});--}}
+
+    {{--</script>--}}
+
+
 @endpush

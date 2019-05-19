@@ -9,7 +9,6 @@
         'image' => 'jpg|jpeg|png',
         'link'  => 'admin',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Setting open route
@@ -185,7 +184,7 @@
             'name'     => 'detail.blade',
             'isView'   => true,
         ],
-        'ShowView' => [
+        'ShowView'   => [
             'resource' => 'template/show.blade.stub',
             'target'   => 'resources/views/',
             'needDir'  => true,
@@ -220,5 +219,20 @@
         'Request'    => 'requestType',
         'RequestApi' => 'requestType',
         'Lang'       => 'configLang',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Set list of replace label
+    |--------------------------------------------------------------------------
+    */
+
+    'label' => [
+        'search' => [
+            '_en', '_th', '_id',
+        ],
+        'replace' => [
+            '[en]', '[th]',''
+        ],
     ],
 ];

@@ -19,8 +19,7 @@
     <!-- Check if the language is set to RTL, so apply the RTL layouts -->
         <!-- Otherwise apply the normal LTR layouts -->
         {{ style(mix('css/backend.css')) }}
-        <link rel="stylesheet" href="{{asset('bower_components/jquery-loading/dist/jquery.loading.css')}}">
-
+        {{ style(mix('css/all.css')) }}
 
         @stack('after-styles')
     </head>
@@ -57,9 +56,13 @@
     {!! script(mix('js/vendor.js')) !!}
     {!! script(mix('js/backend.js')) !!}
 
-    <script src="{{asset('js/jquery.validate.min.js')}}"></script>
+
+    {{--<script src="{{asset('js/jquery.validate.min.js')}}"></script>--}}
     <script src="{{asset('js/additional-methods.min.js')}}"></script>
     <script src="{{asset('bower_components/jquery-loading/dist/jquery.loading.js')}}"></script>
+    {{--<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>--}}
+    {{--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>--}}
+    {{--<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />--}}
     @stack('after-scripts')
     </body>
     </html>

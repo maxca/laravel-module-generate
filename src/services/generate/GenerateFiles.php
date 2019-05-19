@@ -159,11 +159,11 @@ class GenerateFiles implements GenerateFilesInterface
      */
     protected function setReplaceConfig($replace)
     {
-        $this->replace       = ucfirst($replace);
+        $this->replace       = cvCamel($replace);
         $this->replaceSmall  = strtolower($replace);
         $this->replaceSnake  = self::strCamelCase($replace);
         $this->replaceUrl    = $this->urlGenerate($this->replaceSnake);
-        $this->replacePlural = strtolower(Str::plural($this->replace));
+        $this->replacePlural = strtolower(Str::plural($this->replaceSnake));
     }
 
     /**

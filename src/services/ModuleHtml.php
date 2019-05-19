@@ -28,6 +28,7 @@ class ModuleHtml extends HtmlService
         'list'   => 'List'
     ];
 
+
     /**
      * @var string
      */
@@ -251,7 +252,7 @@ class ModuleHtml extends HtmlService
             && $columnRule == 'required' ? 'required' : 'nullable';
         }
 
-        
+
         return $data;
     }
 
@@ -280,8 +281,11 @@ class ModuleHtml extends HtmlService
      */
     protected function generateSidebar($module)
     {
-        $parentId = 0;
+        $parentId   = 0;
+        $configLink = config(CONFIG_NAME . '.backend.link') . '/' . Str::plural($module->name);
+
         foreach ($this->sidebars as $key => $value) {
+            $link = $key == 'list' ? $configLink : $configLink . '/create';
             $data = [
                 'name'        => [
                     'en' => ucfirst($module->name) . ' ' . $value,
@@ -289,7 +293,7 @@ class ModuleHtml extends HtmlService
                 ],
                 'parent_id'   => $parentId,
                 'status'      => 'active',
-                'link'        => config(CONFIG_NAME . '.backend.link') . '/' . Str::plural($module->name),
+                'link'        => $link,
                 'icon'        => 'nav-icon far fa-user',
                 'type'        => $key == 'main' ? 'parent' : 'child',
                 'permissions' => strtolower($module->name) . '.*',

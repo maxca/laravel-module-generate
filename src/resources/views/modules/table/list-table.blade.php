@@ -2,8 +2,16 @@
     <thead>
     <tr>
         @foreach($columns as $column)
-            <th>{{ucfirst($column->name)}}</th>
+            @if(array_key_exists($column->name , $relations))
+                <th>{{ucfirst($relations[$column->name]['name'])}}</th>
+            @else
+                <th>{{ucfirst(genLabel($column->name))}}</th>
+            @endif
         @endforeach
+        @if($displayTime == true)
+            <th class="text-center" width="18%">CreateAt</th>
+            <th class="text-center" width="18%">UpdatedAt</th>
+        @endif
         <th class="text-center" width="18%">Actions</th>
     </tr>
     </thead>
@@ -13,13 +21,20 @@
         @foreach($data as $key => $column)
             <tr>
                 @foreach($columns_name as $k => $node)
-                    @if(in_array($node, $images))
-                        <td><img src="{{asset($column->{$node})}}" class="rounded-left" alt="" width="80" height="80"></td>
+                    @if(array_key_exists($node, $relations))
+                        <td>{{ $column->{$relations[$node]['has']}->{$relations[$node]['value']} }}</td>
+                    @elseif(in_array($node, $images))
+                        <td><img src="{{asset($column->{$node})}}" class="rounded-left" alt="" width="80" height="80">
+                        </td>
                     @else
                         <td>{{ $column->{$node} }}</td>
                     @endif
 
                 @endforeach
+                @if($displayTime == true)
+                    <td>{{$column->created_at}}</td>
+                    <td>{{$column->updated_at}}</td>
+                @endif
                 <td class="text-right" width="15%">
                     @include('module-generate::modules.components.list-button-group')
                 </td>
@@ -27,7 +42,7 @@
         @endforeach
     @else
         <tr>
-            <td class="text-center" colspan="{{count($columns) + 1}}">ไม่พบข้อมูล</td>
+            <td class="text-center" colspan="{{count($columns) + ($displayTime ? 3 : 1)}}">{{__('alerts.notfound')}}</td>
         </tr>
     @endif
 

@@ -1,31 +1,24 @@
-
-<div class="form-group">
-    <div class="input-group">
-        <div class="input-group-prepend">
-        <span class="input-group-text">
-        <i class="{{$icon ?? null}}"></i>
-        </span>
-        </div>
-        @if($type == 'text')
-            @include('module-generate::modules.form.input-text',['value' => old($name, $data->{$name} ?? null)])
-        @elseif($type == 'number')
-            @include('module-generate::modules.form.input-number',['value' => old($name, $data->{$name} ?? null)])
-        @elseif($type == 'file')
-
-            <div class="custom-file">
-                @php $filename = old($name, $data->{$name} ?? null) @endphp
-                <input type="file" name="{{$name}}" class="custom-file-input" value="{{$filename}}"
-                       aria-describedby="inputGroupFileAddon01">
-                <label class="custom-file-label" for="inputGroupFile01">{{$filename ?? 'Choose file' }}</label>
-            </div>
-
-        @elseif($type == '')
-
-        @endif
-
+@if($type == 'textarea')
+    <div class="form-group">
+        @include('module-generate::modules.form.input-textarea', ['value' => old($name, $data->{$name} ?? null)])
     </div>
-
-</div>
+@else
+    <div class="form-group row">
+        <div class="col-md-2">
+            <label class="col-form-label">{{genLabel($name)}}</label>
+        </div>
+        <div class="col-md">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="{{$icon ?? null}}"></i>
+                    </span>
+                </div>
+                @include('module-generate::modules.components.form-group-sub-input-create')
+            </div>
+        </div>
+    </div>
+@endif
 
 
 

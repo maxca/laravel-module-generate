@@ -145,7 +145,7 @@ class GenerateMigration extends GenerateFiles
             . $this->templateColumnList['base_migration'];
         $file     = file_get_contents($template);
         $file     = str_replace("{contents}", $contents, $file);
-        $file     = str_replace("{replace_camel}", Str::camel($this->replace), $file);
+        $file     = str_replace("{replace_camel}", cvCamel($this->replace), $file);
         $file     = str_replace("{replace_plural}", $this->replacePlural, $file);
         return $file;
     }

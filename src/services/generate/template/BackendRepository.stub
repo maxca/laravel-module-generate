@@ -41,6 +41,35 @@ class {replace}BackendRepository extends BackendService
         'download' => '{replace_sm}.download',
     ];
 
+    /** @var array
+     * set relation display
+     *
+    protected $overrideColumn = [
+        'category_id' => [
+            'model'   => Media_category::class,
+            'key'     => 'category_id',
+            'message' => 'select category',
+            'pluck'   => [
+                'id'   => 'id',
+                'name' => 'name',
+            ],
+        ]
+    ];
+     */
+
+    /** @var array
+     * set relation display
+     *
+    protected $relations = [
+        'category_id' => [
+            'has'   => 'category',
+            'value' => 'name',
+            'name'  => 'category',
+        ],
+    ];
+     */
+
+
     /**
      * @var string export filename
      */
