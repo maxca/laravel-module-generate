@@ -23,6 +23,7 @@ class CreateSidebarsTable extends Migration
             $table->text('permissions')->nullable();
             $table->text('roles')->nullable();
             $table->integer('notify')->default(0);
+            $table->integer('sort')->default(999);
             $table->timestamps();
         });
     }

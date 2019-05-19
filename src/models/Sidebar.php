@@ -24,6 +24,7 @@ class Sidebar extends Model
         'type',
         'permissions',
         'roles',
+        'sort',
     ];
 
     /**
