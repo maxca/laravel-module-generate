@@ -218,5 +218,30 @@ class BackendService extends AbstractBackendService
         return Sidebar::orderBy('sort', 'asc')->get();
     }
 
+    /**
+     * @return array
+     * @throws \Throwable
+     */
+    public function getOverrideColumn()
+    {
+        $data = [];
+
+        foreach ($this->overrideColumn as $key => $column) {
+
+            $values = app($column['model'])
+                ->get()->pluck($column['pluck']['name'], $column['pluck']['id'])
+                ->put('', $column['message'])
+                ->sortKeys()
+                ->toArray();
+
+            $selected   = request($key);
+            $view       = view('module-generate::modules.form.select-option',
+                ['name' => $key, 'values' => $values, 'value' => $selected]
+            )->render();
+            $data[$key] = $view;
+        }
+        return $data;
+    }
+
 
 }

@@ -84,6 +84,25 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
      */
     protected $imageColumns = [];
 
+    /** @var array
+     * settting overring columns
+     * needed seelction option
+     */
+    protected $overrideColumn = [];
+
+    /** @var array
+     * set relationship of model
+     * need diplay overriding column data
+     */
+    protected $relations = [];
+
+    /**
+     * @var bool
+     * setting display timestamp
+     * on list page
+     */
+    protected $displayTime = true;
+
     /**
      * @param $view
      * @param bool $needData
@@ -105,11 +124,23 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
                 ->with(['sidebars' => $this->getSidebars()])
                 ->with(['local' => app()->getLocale()])
                 ->with(['images' => $this->imageColumns])
+                ->with(['overrideColumn' => $this->getOverrideColumn()])
+                ->with(['relations' => $this->relations])
+                ->with(['displayTime' => $this->displayTime])
                 ->render()
             : view($view, ['module' => $this->containerName])
                 ->with(['images' => $this->imageColumns])
                 ->with(['local' => app()->getLocale()]);
     }
+
+    /**
+     * @return array
+     */
+    public function getOverrideColumn()
+    {
+        return $this->overrideColumn;
+    }
+
 
     /**
      * @return array
