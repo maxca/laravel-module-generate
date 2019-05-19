@@ -20,6 +20,13 @@ class InputTypeSeeder extends Seeder
                 'created_at'    => now(),
                 'updated_at'    => now(),
             ], [
+                'name'          => 'textarea',
+                'type'          => 'input',
+                'status'        => 'active',
+                'allowed_input' => 'all',
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ], [
                 'name'          => 'number',
                 'type'          => 'input',
                 'status'        => 'active',

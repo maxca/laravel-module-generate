@@ -66,10 +66,12 @@ class BackendService extends AbstractBackendService
     {
         $data = [];
         foreach ($this->moduleData->search as $key => $search) {
-            $data[$key]['name']  = $search->column->name;
-            $data[$key]['type']  = $search->column->type_name;
-            $data[$key]['label'] = $search->column->label;
-            $data[$key]['icon']  = $search->icon->name ?? null;
+            $values = explode(",", $search->column->value);
+            $data[$key]['name']   = $search->column->name;
+            $data[$key]['type']   = $search->column->type_name;
+            $data[$key]['label']  = $search->column->label;
+            $data[$key]['values'] = !empty($values[0]) ? $values : null;
+            $data[$key]['icon']   = $search->icon->name ?? null;
         }
         return $data;
     }

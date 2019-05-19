@@ -2,6 +2,8 @@
 
 namespace Samark\ModuleGenerate\Services\Generate;
 
+use Illuminate\Support\Str;
+
 /**
  * Class GenerateMigration
  * @package App\Services
@@ -20,14 +22,16 @@ class GenerateMigration extends GenerateFiles
      * set list of template column lists
      */
     protected $templateColumnList = [
-        'base_migration' => 'baseMigration.stub',
-        'text_nullable'  => 'columnStringNull.stub',
-        'text_required'  => 'columnString.stub',
-        'enum_nullable'  => 'columnEnumNull.stub',
-        'enum_required'  => 'columnEnum.stub',
-        'enum_default'   => 'columnEnumWithDefault.stub',
-        'int_required'   => 'columnInteger.stub',
-        'int_nullable'   => 'columnIntegerNull.stub',
+        'base_migration'    => 'baseMigration.stub',
+        'text_nullable'     => 'columnStringNull.stub',
+        'text_required'     => 'columnString.stub',
+        'textarea_nullable' => 'columnLongTextNull.stub',
+        'textarea_required' => 'columnLongText.stub',
+        'enum_nullable'     => 'columnEnumNull.stub',
+        'enum_required'     => 'columnEnum.stub',
+        'enum_default'      => 'columnEnumWithDefault.stub',
+        'int_required'      => 'columnInteger.stub',
+        'int_nullable'      => 'columnIntegerNull.stub',
     ];
 
     /**
@@ -76,6 +80,11 @@ class GenerateMigration extends GenerateFiles
                 return $column['rule'] == 'required'
                     ? $this->templateColumnList['text_required']
                     : $this->templateColumnList['text_nullable'];
+                break;
+            case 'textarea':
+                return $column['rule'] == 'required'
+                    ? $this->templateColumnList['textarea_required']
+                    : $this->templateColumnList['textarea_nullable'];
                 break;
             case 'radio':
                 $this->column['replace_value'] = arrayConcat($column['value']);
@@ -136,7 +145,7 @@ class GenerateMigration extends GenerateFiles
             . $this->templateColumnList['base_migration'];
         $file     = file_get_contents($template);
         $file     = str_replace("{contents}", $contents, $file);
-        $file     = str_replace("{replace_camel}", $this->replaceSnake, $file);
+        $file     = str_replace("{replace_camel}", Str::camel($this->replace), $file);
         $file     = str_replace("{replace_plural}", $this->replacePlural, $file);
         return $file;
     }
@@ -161,18 +170,19 @@ class GenerateMigration extends GenerateFiles
     public function genModelFillable($columns = array())
     {
         parent::setTemplatePath('public/template/');
-        $column = ''; $count =0;
+        $column = '';
+        $count  = 0;
         foreach ($columns as $key => $value) {
 
-            $count ++;
-            if($count == 1) {
+            $count++;
+            if ($count == 1) {
                 $column .= "'{$key}',\n";
             } else {
                 $column .= "\t\t'{$key}',\n";
             }
 
         }
-        parent::wirteFileAndMakePath(app_path('/Models/'),$this->replace.'.php' , $this->bundleBaseModel($column));
+        parent::wirteFileAndMakePath(app_path('/Models/'), $this->replace . '.php', $this->bundleBaseModel($column));
 
     }
 
