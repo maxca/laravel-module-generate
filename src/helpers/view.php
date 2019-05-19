@@ -18,3 +18,55 @@ if (!function_exists('buttonActive')) {
         }
     }
 }
+
+if (!function_exists('getRulesValue')) {
+    /**
+     * @param $values
+     * @return array
+     */
+    function getRulesValue($values)
+    {
+        $item = [];
+        foreach (explode(",", $values) as $key => $value) {
+            $item[$value] = $value;
+        }
+        return $item;
+    }
+}
+
+if (!function_exists('genLabel')) {
+    /**
+     * @param $label
+     * @return mixed
+     */
+    function genLabel($label)
+    {
+        return str_replace(
+            config(CONFIG_NAME . '.label.search'),
+            config(CONFIG_NAME . '.label.replace'),
+            $label
+        );
+    }
+}
+
+if (!function_exists('cvCamel')) {
+    /**
+     * @param $string
+     * @return string
+     */
+    function cvCamel($string)
+    {
+        return ucfirst(\Illuminate\Support\Str::camel($string));
+    }
+}
+
+if (!function_exists('cvModuleName')) {
+    /**
+     * @param string $string
+     * @return string
+     */
+    function cvModuleName($string = '')
+    {
+        return \Illuminate\Support\Str::ucfirst(str_replace('_', ' ', $string));
+    }
+}
