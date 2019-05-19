@@ -66,7 +66,7 @@ class BackendService extends AbstractBackendService
     {
         $data = [];
         foreach ($this->moduleData->search as $key => $search) {
-            $values = explode(",", $search->column->value);
+            $values               = explode(",", $search->column->value);
             $data[$key]['name']   = $search->column->name;
             $data[$key]['type']   = $search->column->type_name;
             $data[$key]['label']  = $search->column->label;
@@ -215,7 +215,7 @@ class BackendService extends AbstractBackendService
      */
     public function getSidebars()
     {
-        return Sidebar::get();
+        return Sidebar::orderBy('sort', 'asc')->get();
     }
 
 
