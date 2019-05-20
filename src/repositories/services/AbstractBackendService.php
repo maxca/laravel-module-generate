@@ -102,7 +102,7 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
      * on list page
      */
     protected $displayTime = true;
-
+    
     /**
      * @param $view
      * @param bool $needData
@@ -127,6 +127,7 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
                 ->with(['overrideColumn' => $this->getOverrideColumn()])
                 ->with(['relations' => $this->relations])
                 ->with(['displayTime' => $this->displayTime])
+                ->with(['routes' => $this->routes])
                 ->render()
             : view($view, ['module' => $this->containerName])
                 ->with(['images' => $this->imageColumns])
