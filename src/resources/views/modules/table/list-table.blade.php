@@ -2,10 +2,12 @@
     <thead>
     <tr>
         @foreach($columns as $column)
-            @if(array_key_exists($column->name , $relations))
-                <th>{{ucfirst($relations[$column->name]['name'])}}</th>
-            @else
-                <th>{{ucfirst(genLabel($column->name))}}</th>
+            @if(!in_array($column->name, $hiddenColumn))
+                @if(array_key_exists($column->name , $relations))
+                    <th>{{ucfirst($relations[$column->name]['name'])}}</th>
+                @else
+                    <th>{{ucfirst(genLabel($column->name))}}</th>
+                @endif
             @endif
         @endforeach
         @if($displayTime == true)
@@ -19,30 +21,34 @@
 
     @if($data->total() != 0)
         @foreach($data as $key => $column)
-            <tr>
-                @foreach($columns_name as $k => $node)
-                    @if(array_key_exists($node, $relations))
-                        <td>{{ $column->{$relations[$node]['has']}->{$relations[$node]['value']} }}</td>
-                    @elseif(in_array($node, $images))
-                        <td><img src="{{asset($column->{$node})}}" class="rounded-left" alt="" width="80" height="80">
-                        </td>
-                    @else
-                        <td>{{ $column->{$node} }}</td>
-                    @endif
+            @if(!in_array($column->name, $hiddenColumn))
+                <tr>
+                    @foreach($columns_name as $k => $node)
+                        @if(array_key_exists($node, $relations))
+                            <td>{{ $column->{$relations[$node]['has']}->{$relations[$node]['value']} }}</td>
+                        @elseif(in_array($node, $images))
+                            <td>
+                                <img src="{{cdn($column->{$node})}}" class="rounded-left" alt="" width="80" height="80">
+                            </td>
+                        @else
+                            <td>{{ $column->{$node} }}</td>
+                        @endif
 
-                @endforeach
-                @if($displayTime == true)
-                    <td>{{$column->created_at}}</td>
-                    <td>{{$column->updated_at}}</td>
-                @endif
-                <td class="text-right" width="15%">
-                    @include('module-generate::modules.components.list-button-group')
-                </td>
-            </tr>
+                    @endforeach
+                    @if($displayTime == true)
+                        <td>{{$column->created_at}}</td>
+                        <td>{{$column->updated_at}}</td>
+                    @endif
+                    <td class="text-right" width="15%">
+                        @include('module-generate::modules.components.list-button-group')
+                    </td>
+                </tr>
+            @endif
         @endforeach
     @else
         <tr>
-            <td class="text-center" colspan="{{count($columns) + ($displayTime ? 3 : 1)}}">{{__('alerts.notfound')}}</td>
+            <td class="text-center"
+                colspan="{{count($columns) + ($displayTime ? 3 : 1)}}">{{__('alerts.notfound')}}</td>
         </tr>
     @endif
 

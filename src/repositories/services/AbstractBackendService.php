@@ -85,7 +85,7 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
     protected $imageColumns = [];
 
     /** @var array
-     * settting overring columns
+     * setting overriding columns
      * needed seelction option
      */
     protected $overrideColumn = [];
@@ -102,7 +102,22 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
      * on list page
      */
     protected $displayTime = true;
-    
+
+    /** @var array
+     * set  hidden column
+     */
+    protected $hiddenColumn = [];
+
+    /** @var array
+     * set  hidden search
+     */
+    protected $hiddenSearch = [];
+
+    /** @var array
+     * set custom data for view
+     */
+    protected $customData = [];
+
     /**
      * @param $view
      * @param bool $needData
@@ -128,10 +143,16 @@ abstract class AbstractBackendService implements AbstractBackendServiceInterface
                 ->with(['relations' => $this->relations])
                 ->with(['displayTime' => $this->displayTime])
                 ->with(['routes' => $this->routes])
+                ->with(['hiddenSearch' => $this->hiddenSearch])
+                ->with(['hiddenColumn' => $this->hiddenColumn])
+                ->with(['customData' => $this->customData])
                 ->render()
             : view($view, ['module' => $this->containerName])
                 ->with(['images' => $this->imageColumns])
-                ->with(['local' => app()->getLocale()]);
+                ->with(['local' => app()->getLocale()])
+                ->with(['hiddenSearch' => $this->hiddenSearch])
+                ->with(['hiddenColumn' => $this->hiddenColumn])
+                ->render();
     }
 
     /**

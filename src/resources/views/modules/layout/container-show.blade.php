@@ -6,7 +6,7 @@
                     <tr>
                         <td class="border-right">{{genLabel($key)}}</td>
                         @if(in_array($key ,$images))
-                            <td><img src="{{asset($item)}}" class="img-thumbnail" alt=""></td>
+                            <td><img src="{{cdn($item)}}" class="img-thumbnail" alt=""></td>
                         @else
                             @if(array_key_exists($key, $relations))
                                 <td>{{ $data->{$relations[$key]['has']}->{$relations[$key]['value']} }}</td>

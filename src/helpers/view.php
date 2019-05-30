@@ -70,3 +70,18 @@ if (!function_exists('cvModuleName')) {
         return \Illuminate\Support\Str::ucfirst(str_replace('_', ' ', $string));
     }
 }
+
+if (!function_exists('cdn')) {
+    /**
+     * @param $path
+     * @return string
+     */
+    function cdn($path)
+    {
+        if (in_array(env('APP_ENV'), config(CONFIG_NAME.'.use_cdn'))) {
+            return env('CDN_URL') . $path;
+        }
+        return asset($path);
+    }
+}
+

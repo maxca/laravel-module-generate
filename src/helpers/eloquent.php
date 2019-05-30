@@ -52,8 +52,8 @@ if (!function_exists('clearCache')) {
             CURLOPT_HTTPHEADER     => array(
                 "Content-Type: application/json",
                 "Postman-Token: 8bebf8e3-8341-44ad-8c01-cc40edb915cd",
-                "X-Auth-Email: samarkchsngn@gmail.com",
-                "X-Auth-Key: 37defcdeddee0647d10f6ea514c78734cd5d1",
+                "X-Auth-Email: " . env('AUTH_EMAIL'),
+                "X-Auth-Key: " . env('AUTH_KEY'),
                 "cache-control: no-cache"
             ),
         ));
