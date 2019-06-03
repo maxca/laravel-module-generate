@@ -28,7 +28,6 @@ class ModuleHtml extends HtmlService
         'list'   => 'List'
     ];
 
-
     /**
      * @var string
      */
@@ -52,6 +51,7 @@ class ModuleHtml extends HtmlService
     protected $routes = [
         'create' => 'module-generate::module.create',
         'list'   => 'module-generate::module.list',
+        'update' => 'module-generate::module.submit.update',
     ];
 
     /**
@@ -59,7 +59,9 @@ class ModuleHtml extends HtmlService
      */
     protected $view = [
         'create' => 'module-generate::modules.create',
-        'list'   => 'module-generate::modules.module.list'
+        'update' => 'module-generate::modules.update',
+        'list'   => 'module-generate::modules.module.list',
+
     ];
 
     /**
@@ -78,6 +80,22 @@ class ModuleHtml extends HtmlService
         return $this->redirect();
     }
 
+    /**
+     * @param array $params
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function edit($params = array())
+    {
+        $create = [
+            'name'   => $params['name'],
+            'status' => $params['status'],
+            'key'    => $params['module_key'],
+        ];
+        $module = $this->model->create($create);
+        $this->mappingAndCreateAction($params, $module->id);
+        $this->createColumn($params, $module->id);
+        return $this->redirect();
+    }
 
     /**
      * @param $params
@@ -203,22 +221,6 @@ class ModuleHtml extends HtmlService
     }
 
     /**
-     * @return mixed
-     */
-    protected function withRelation()
-    {
-        return $this->model->with(['action'])
-            ->with(['search' => function ($query) {
-                $query->with('column');
-            }])
-            ->with(['column' => function ($query) {
-                $query->with('type');
-                $query->with('icon');
-                $query->with('rule');
-            }]);
-    }
-
-    /**
      * @param $module
      * @throws \Exception
      */
@@ -234,6 +236,7 @@ class ModuleHtml extends HtmlService
 
         #$genFile->makeMigration();
     }
+
 
     /**
      * @param $module

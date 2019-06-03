@@ -55,6 +55,8 @@ class ModuleRoute extends RouteRegistrar
         ], function () {
             $this->get('/', 'ModuleController@list')->name('list');
             $this->get('/create', 'ModuleController@create')->name('create');
+            $this->get('/update/{id}', 'ModuleController@update')->name('update');
+            $this->post('/update/{id}', 'ModuleController@edit')->name('submit.update');
             $this->get('/delete/{id}', 'ModuleController@delete')->name('delete');
             $this->get('/json/{id}', 'ModuleController@json')->name('json');
             $this->post('/store', 'ModuleController@store');

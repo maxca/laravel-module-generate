@@ -104,6 +104,20 @@ class  HtmlService implements HtmlServiceInterface
     }
 
     /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
+     */
+    public function update($id)
+    {
+        $this->bundleData();
+        $this->model = $this->model->where(['id' => $id]);
+        $data = $this->withRelation()->first();
+        return view($this->view['update'], $this->data)
+            ->with(['data' => $data]);
+    }
+
+    /**
      * @param array $params
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -138,5 +152,22 @@ class  HtmlService implements HtmlServiceInterface
     {
         return redirect()->route($this->routes['list']);
     }
+
+    /**
+     * @return mixed
+     */
+    protected function withRelation()
+    {
+        return $this->model->with(['action'])
+            ->with(['search' => function ($query) {
+                $query->with('column');
+            }])
+            ->with(['column' => function ($query) {
+                $query->with('type');
+                $query->with('icon');
+                $query->with('rule');
+            }]);
+    }
+
 
 }

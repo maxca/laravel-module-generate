@@ -19,5 +19,7 @@
     @elseif($type == 'radio')
         @php $values = getRulesValue($column->value)  @endphp
         @include('module-generate::modules.form.select-option', ['name' => $name ,'', 'values' => $values])
+    @elseif($type == 'date')
+        @include('module-generate::modules.form.input-text-date', ['value' => old($name, $data->{$name} ?? null)])
     @endif
 @endif

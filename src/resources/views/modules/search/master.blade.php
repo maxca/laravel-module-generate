@@ -1,6 +1,6 @@
 {{--{{dd($search)}}--}}
 @foreach($search as $key => $item)
-    @if(in_array($item['type'], ['text','radio','number']) && !in_array($item['name'], $hiddenSearch))
+    @if(in_array($item['type'], ['text','radio','number']))
         <div class="col-sm-3">
             <div class="form-group">
                 <div class="input-group">

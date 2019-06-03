@@ -71,5 +71,27 @@ class ModuleController extends Controller
         return $this->html->delete($id);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Throwable
+     */
+    public function update($id)
+    {
+        return $this->html->update($id);
+        
+    }
+
+    /**
+     * @param \Samark\ModuleGenerate\Http\Requests\CreateModuleRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function edit(CreateModuleRequest $request, $id)
+    {
+        $this->html->delete($id);
+        return $this->html->edit($request->all());   
+    }
+
 
 }
