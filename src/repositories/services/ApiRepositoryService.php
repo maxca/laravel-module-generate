@@ -67,6 +67,43 @@ class ApiRepositoryService implements ApiRepositoryServiceInterface
     }
 
     /**
+     * @param $params
+     */
+    protected function upload(&$params)
+    {
+        foreach ($params as $key => $request) {
+            if (request()->hasFile($key)) {
+                $name = request()->file($key)->getClientOriginalName();
+                request()->file($key)
+                    ->move(public_path('/upload'), $name);
+                $params[$key] = '/upload/' . $name;
+            }
+        }
+    }
+
+    /**
+     * @param array $params
+     * @return array|string
+     */
+    protected function bootstrapFileUpload($params=[])
+    {
+        if (isset($params['file_data'])) {
+            $params['initialPreview']          = cdn($params['file_data']);
+            $params['initialPreviewThumbTags'] = cdn($params['file_data']);
+
+            $response = [
+                'key'         => $params['fileId'],
+                'size'        => 256,
+                'downloadUrl' => cdn($params['file_data']),
+                'url'         => cdn($params['file_data']),
+            ];
+
+            return $response;
+        }
+        return $out['error'] = 'not found file uploads';
+    }
+
+    /**
      * @param $id
      * @param array $params
      * @return mixed
